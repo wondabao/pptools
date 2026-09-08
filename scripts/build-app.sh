@@ -19,6 +19,9 @@ mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources"
 cp .build/release/PPTTools "$app/Contents/MacOS/PPTTools"
 # App uses standard resources when bundled and Bundle.module under SwiftPM.
 cp Sources/PPTTools/Resources/templates.json "$app/Contents/Resources/"
+if [ -f Sources/PPTTools/Resources/Credits.rtf ]; then
+    cp Sources/PPTTools/Resources/Credits.rtf "$app/Contents/Resources/"
+fi
 if [ -f Sources/PPTTools/Resources/AppIcon.icns ]; then
     cp Sources/PPTTools/Resources/AppIcon.icns "$app/Contents/Resources/"
 fi

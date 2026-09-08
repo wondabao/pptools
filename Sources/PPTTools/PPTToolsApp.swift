@@ -73,6 +73,11 @@ struct PPTToolsApp: App {
         .windowToolbarStyle(.unified(showsTitle: false))
         .defaultSize(width: 1200, height: 820)
         .commands {
+            CommandGroup(replacing: .appInfo) {
+                Button("关于有用工具") {
+                    showAboutPanel()
+                }
+            }
             CommandGroup(after: .appInfo) {
                 Button("检查更新…") {
                     updateManager.checkForUpdates(manual: true)
@@ -83,5 +88,32 @@ struct PPTToolsApp: App {
                 Button("导入 PPTX 或 PDF…") { model.chooseInput() }.keyboardShortcut("o").disabled(model.busy)
             }
         }
+    }
+
+    private func showAboutPanel() {
+        let url = URL(string: "https://www.yypic.com/")!
+        let text = "官方网站：https://www.yypic.com/"
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        let attrString = NSMutableAttributedString(
+            string: text,
+            attributes: [
+                .font: NSFont.systemFont(ofSize: 11),
+                .foregroundColor: NSColor.secondaryLabelColor,
+                .paragraphStyle: paragraphStyle
+            ]
+        )
+        let range = (text as NSString).range(of: "https://www.yypic.com/")
+        attrString.addAttribute(.link, value: url, range: range)
+
+        var options: [NSApplication.AboutPanelOptionKey: Any] = [
+            .credits: attrString,
+            .applicationName: "有用工具"
+        ]
+        if let iconURL = Bundle.main.url(forResource: "AppIcon", withExtension: "icns") ?? Bundle.module.url(forResource: "AppIcon", withExtension: "icns"),
+           let icon = NSImage(contentsOf: iconURL) {
+            options[.applicationIcon] = icon
+        }
+        NSApplication.shared.orderFrontStandardAboutPanel(options: options)
     }
 }
