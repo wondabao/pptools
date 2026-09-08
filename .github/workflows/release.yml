@@ -32,7 +32,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            build/有用工具-*.dmg
-            build/有用工具.dmg
+            build/*.dmg
             build/*.sha256
           generate_release_notes: true

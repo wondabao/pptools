@@ -50,12 +50,15 @@ hdiutil create \
     -format UDZO \
     "$DMG_PATH"
 
-# 为方便发布，生成一份固定名称的副本
+# 为方便发布与跨语言环境，生成多份命名镜像
 cp "$DMG_PATH" "$GENERIC_DMG"
+cp "$DMG_PATH" "$PWD/build/PPTTools-v${VERSION}.dmg"
+cp "$DMG_PATH" "$PWD/build/PPTTools.dmg"
 
 # 6. 计算 SHA-256 校验和
 SHA256=$(shasum -a 256 "$DMG_PATH" | awk '{print $1}')
 echo "$SHA256  $DMG_NAME" > "$PWD/build/$DMG_NAME.sha256"
+echo "$SHA256  PPTTools-v${VERSION}.dmg" > "$PWD/build/PPTTools-v${VERSION}.dmg.sha256"
 
 echo "=================================================="
 echo "✅ DMG 打包完成："
