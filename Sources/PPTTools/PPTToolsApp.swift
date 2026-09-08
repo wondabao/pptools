@@ -33,6 +33,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 struct PPTToolsApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var model = AppModel()
+    @StateObject private var updateManager = UpdateManager.shared
 
     init() {
         TableHeaderThemeHelper.installHeaderHooks()
@@ -47,10 +48,37 @@ struct PPTToolsApp: App {
             MainView()
                 .environmentObject(model)
                 .onOpenURL { model.load($0) }
+                .sheet(isPresented: $updateManager.showUpdateSheet) {
+                    UpdateSheetView(updateManager: updateManager)
+                }
+                .alert("已是最新版本", isPresented: $updateManager.showUpToDateAlert) {
+                    Button("好", role: .cancel) {}
+                } message: {
+                    Text("当前已安装最新版本 (v\(updateManager.currentVersion))，无需更新。")
+                }
+                .alert("检查更新失败", isPresented: Binding(
+                    get: { updateManager.updateError != nil },
+                    set: { if !$0 { updateManager.updateError = nil } }
+                )) {
+                    Button("好", role: .cancel) {}
+                } message: {
+                    Text(updateManager.updateError ?? "网络连接异常，请稍后重试。")
+                }
+                .task {
+                    // 启动后延迟 1.5 秒静默检测更新，避免占用冷启动资源
+                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                    updateManager.checkForUpdates(manual: false)
+                }
         }
         .windowToolbarStyle(.unified(showsTitle: false))
         .defaultSize(width: 1200, height: 820)
         .commands {
+            CommandGroup(after: .appInfo) {
+                Button("检查更新…") {
+                    updateManager.checkForUpdates(manual: true)
+                }
+                .disabled(updateManager.isChecking)
+            }
             CommandGroup(replacing: .newItem) {
                 Button("导入 PPTX 或 PDF…") { model.chooseInput() }.keyboardShortcut("o").disabled(model.busy)
             }

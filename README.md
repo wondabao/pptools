@@ -46,9 +46,11 @@
 
 ![电商主图套图制作与预览](docs/screenshots/20260908095407.jpg)
 
-## 构建与运行
+## 构建、测试与打包 DMG
 
 需要 macOS 14+、Xcode Command Line Tools（Swift 5.10 或更高版本）。当前已在 Apple Silicon / Swift 6.3.3 环境编译。
+
+### 1. 本地构建与运行
 
 ```sh
 ./scripts/build-app.sh
@@ -56,6 +58,21 @@ open build/有用工具.app
 ```
 
 产物为本地 ad-hoc 签名的应用，尚未进行 Developer ID 签名和公证。也可用 Xcode 打开 `Package.swift` 运行 PPTTools scheme。
+
+### 2. 一键打包 DMG 安装包
+
+```sh
+./scripts/build-dmg.sh
+```
+
+- 自动编译 Release 架构并利用 macOS 原生 `hdiutil` 生成高压缩比的 `build/有用工具-v<版本号>.dmg` 和 `build/有用工具.dmg`。
+- 镜像内已预置 `/Applications` 软链接与卷标图标，并自动输出 SHA-256 校验和。
+
+### 3. 自动检测更新与在线升级
+
+- **启动静默检测**：应用启动 1.5 秒后在后台静默请求 GitHub Releases API，发现新版本时弹出原生更新窗口。
+- **手动检查更新**：可通过顶部菜单栏「有用工具」→「检查更新…」随时检测。
+- **原生在线下载**：支持查看新版本更新日志，一键在应用内后台流式下载 DMG，显示实时百分比进度条并在完成后自动打开镜像挂载升级。
 
 测试：
 
