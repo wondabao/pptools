@@ -1,0 +1,31 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build DMG installer
+        run: |
+          chmod +x scripts/*.sh
+          ./scripts/build-dmg.sh
+
+      - name: Create GitHub Release and Upload Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/有用工具-*.dmg
+            build/有用工具.dmg
+            build/*.sha256
+          generate_release_notes: true
