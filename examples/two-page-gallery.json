@@ -1,0 +1,10 @@
+{
+  "id": "example-gallery",
+  "name": "示例 · 双页横向画廊",
+  "width": 1600,
+  "height": 560,
+  "slots": [
+    {"x": 40, "y": 60, "width": 740, "height": 416},
+    {"x": 820, "y": 60, "width": 740, "height": 416}
+  ]
+}

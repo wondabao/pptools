@@ -1,0 +1,528 @@
+{
+  "source": "主图.psd",
+  "sha256": "6224bbe3c1e1637a322b51d46d796308d05f106658b9ab168abce9191b485aed",
+  "artboards": [
+    {
+      "artboardIndex": 0,
+      "name": "主图1",
+      "bbox": [
+        0,
+        0,
+        1000,
+        1000
+      ],
+      "slots": [
+        {
+          "layerName": "1",
+          "vectorBox": [
+            26.495315134176053,
+            33.39043285921599,
+            973.4881870098025,
+            580.6112993455325
+          ],
+          "artboardRelBox": [
+            26.4953,
+            33.3904,
+            973.4882,
+            580.6113
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": 15.0
+        },
+        {
+          "layerName": "2",
+          "vectorBox": [
+            19.011107096993328,
+            588.0668823421395,
+            337.5098426114946,
+            775.9071832057526
+          ],
+          "artboardRelBox": [
+            19.0111,
+            588.0669,
+            337.5098,
+            775.9072000000001
+          ],
+          "cornerRadius": 0.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "3",
+          "vectorBox": [
+            340.55427103785405,
+            588.0668823421395,
+            659.0530065523553,
+            775.9071832057526
+          ],
+          "artboardRelBox": [
+            340.5543,
+            588.0669,
+            659.053,
+            775.9072000000001
+          ],
+          "cornerRadius": 0.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "4",
+          "vectorBox": [
+            661.554271037854,
+            588.0661239724429,
+            980.0530065523553,
+            775.9064248360563
+          ],
+          "artboardRelBox": [
+            661.5543,
+            588.0661,
+            980.053,
+            775.9064000000001
+          ],
+          "cornerRadius": 0.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "5",
+          "vectorBox": [
+            19.011107096993328,
+            779.0909173608727,
+            337.5098426114946,
+            966.9312182244861
+          ],
+          "artboardRelBox": [
+            19.0111,
+            779.0909,
+            337.5098,
+            966.9312
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "6",
+          "vectorBox": [
+            340.55427103785405,
+            779.0909173608727,
+            659.0530065523553,
+            966.9312182244861
+          ],
+          "artboardRelBox": [
+            340.5543,
+            779.0909,
+            659.053,
+            966.9312
+          ],
+          "cornerRadius": 0.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "7",
+          "vectorBox": [
+            661.554271037854,
+            779.0909173608727,
+            980.0530065523553,
+            966.9312182244861
+          ],
+          "artboardRelBox": [
+            661.5543,
+            779.0909,
+            980.053,
+            966.9312
+          ],
+          "cornerRadius": 0.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        }
+      ]
+    },
+    {
+      "artboardIndex": 1,
+      "name": "主图2",
+      "bbox": [
+        1100,
+        0,
+        2100,
+        1000
+      ],
+      "slots": [
+        {
+          "layerName": "8",
+          "vectorBox": [
+            1126.495315134176,
+            33.39043285921599,
+            2073.4881870098025,
+            580.6112993455325
+          ],
+          "artboardRelBox": [
+            26.4953,
+            33.3904,
+            973.4882,
+            580.6113
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": 15.0
+        },
+        {
+          "layerName": "9",
+          "vectorBox": [
+            1119.1073405642346,
+            633.164991786074,
+            1570.8753644120193,
+            887.2845152982549
+          ],
+          "artboardRelBox": [
+            19.1073,
+            633.165,
+            470.8753,
+            887.2845
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "10",
+          "vectorBox": [
+            1665.6182213515094,
+            607.2742141652142,
+            2081.027773451432,
+            840.9420965065474
+          ],
+          "artboardRelBox": [
+            565.6182,
+            607.2742,
+            981.0278000000001,
+            840.9421
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "11",
+          "vectorBox": [
+            1401.8616714028785,
+            699.0249873340747,
+            1877.7952815101744,
+            966.737653657374
+          ],
+          "artboardRelBox": [
+            301.8617,
+            699.025,
+            777.7953,
+            966.7376999999999
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": true,
+          "strokeWidth": null
+        }
+      ]
+    },
+    {
+      "artboardIndex": 2,
+      "name": "主图3",
+      "bbox": [
+        2200,
+        0,
+        3200,
+        1000
+      ],
+      "slots": [
+        {
+          "layerName": "12",
+          "vectorBox": [
+            2226.4953151341765,
+            33.39043285921599,
+            3173.4881870098025,
+            580.6112993455325
+          ],
+          "artboardRelBox": [
+            26.4953,
+            33.3904,
+            973.4882,
+            580.6113
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": 15.0
+        },
+        {
+          "layerName": "13",
+          "vectorBox": [
+            2219.107340564235,
+            633.164991786074,
+            2670.8753644120193,
+            887.2845152982549
+          ],
+          "artboardRelBox": [
+            19.1073,
+            633.165,
+            470.8753,
+            887.2845
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "14",
+          "vectorBox": [
+            2765.6182213515094,
+            607.2742141652142,
+            3181.027773451432,
+            840.9420965065474
+          ],
+          "artboardRelBox": [
+            565.6182,
+            607.2742,
+            981.0278000000001,
+            840.9421
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "15",
+          "vectorBox": [
+            2501.8616714028785,
+            699.0249873340747,
+            2977.7952815101744,
+            966.737653657374
+          ],
+          "artboardRelBox": [
+            301.8617,
+            699.025,
+            777.7953,
+            966.7376999999999
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": true,
+          "strokeWidth": null
+        }
+      ]
+    },
+    {
+      "artboardIndex": 3,
+      "name": "主图4",
+      "bbox": [
+        3300,
+        0,
+        4300,
+        1000
+      ],
+      "slots": [
+        {
+          "layerName": "16",
+          "vectorBox": [
+            3326.4953151341765,
+            33.39043285921599,
+            4273.4881870098025,
+            580.6112993455325
+          ],
+          "artboardRelBox": [
+            26.4953,
+            33.3904,
+            973.4882,
+            580.6113
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": 15.0
+        },
+        {
+          "layerName": "17",
+          "vectorBox": [
+            3319.107340564235,
+            633.164991786074,
+            3770.875364412019,
+            887.2845152982549
+          ],
+          "artboardRelBox": [
+            19.1073,
+            633.165,
+            470.8753,
+            887.2845
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "18",
+          "vectorBox": [
+            3865.6182213515094,
+            607.2742141652142,
+            4281.027773451432,
+            840.9420965065474
+          ],
+          "artboardRelBox": [
+            565.6182,
+            607.2742,
+            981.0278000000001,
+            840.9421
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "19",
+          "vectorBox": [
+            3601.8616714028785,
+            699.0249873340747,
+            4077.7952815101744,
+            966.737653657374
+          ],
+          "artboardRelBox": [
+            301.8617,
+            699.025,
+            777.7953,
+            966.7376999999999
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": true,
+          "strokeWidth": null
+        }
+      ]
+    },
+    {
+      "artboardIndex": 4,
+      "name": "主图5",
+      "bbox": [
+        4400,
+        0,
+        5400,
+        1000
+      ],
+      "slots": [
+        {
+          "layerName": "20",
+          "vectorBox": [
+            4426.495315134176,
+            33.39043285921599,
+            5373.4881870098025,
+            580.6112993455325
+          ],
+          "artboardRelBox": [
+            26.4953,
+            33.3904,
+            973.4882,
+            580.6113
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": 15.0
+        },
+        {
+          "layerName": "21",
+          "vectorBox": [
+            4419.107340564235,
+            633.164991786074,
+            4870.875364412019,
+            887.2845152982549
+          ],
+          "artboardRelBox": [
+            19.1073,
+            633.165,
+            470.8753,
+            887.2845
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "22",
+          "vectorBox": [
+            4965.618221351509,
+            607.2742141652142,
+            5381.027773451432,
+            840.9420965065474
+          ],
+          "artboardRelBox": [
+            565.6182,
+            607.2742,
+            981.0278000000001,
+            840.9421
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": false,
+          "strokeWidth": null
+        },
+        {
+          "layerName": "23",
+          "vectorBox": [
+            4701.8616714028785,
+            699.0249873340747,
+            5177.795281510174,
+            966.737653657374
+          ],
+          "artboardRelBox": [
+            301.8617,
+            699.025,
+            777.7953,
+            966.7376999999999
+          ],
+          "cornerRadius": 15.0,
+          "hasShadow": true,
+          "strokeWidth": null
+        }
+      ]
+    },
+    {
+      "artboardIndex": 5,
+      "name": "主图6",
+      "bbox": [
+        5500,
+        0,
+        6500,
+        1000
+      ],
+      "slots": [
+        {
+          "layerName": "20",
+          "vectorBox": [
+            5526.495315134176,
+            594.5120911816442,
+            6473.4881870098025,
+            774.5120913899183
+          ],
+          "artboardRelBox": [
+            26.4953,
+            594.5121,
+            973.4882,
+            774.5121
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": 15.0
+        },
+        {
+          "layerName": "20",
+          "vectorBox": [
+            5526.495315134176,
+            33.39043285921599,
+            6473.4881870098025,
+            580.6112993455325
+          ],
+          "artboardRelBox": [
+            26.4953,
+            33.3904,
+            973.4882,
+            580.6113
+          ],
+          "cornerRadius": 20.0,
+          "hasShadow": false,
+          "strokeWidth": 15.0
+        }
+      ]
+    }
+  ]
+}

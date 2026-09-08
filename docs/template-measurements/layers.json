@@ -1,0 +1,2412 @@
+[
+  {
+    "index": 0,
+    "name": "背景",
+    "bbox": [
+      0,
+      0,
+      1872,
+      10234
+    ],
+    "size": [
+      1872,
+      10234
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 1,
+    "name": "1",
+    "bbox": [
+      36,
+      49,
+      1835,
+      1063
+    ],
+    "size": [
+      1799,
+      1014
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 2,
+    "name": "1",
+    "bbox": [
+      35,
+      50,
+      1835,
+      1062
+    ],
+    "size": [
+      1800,
+      1012
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 3,
+    "name": "2",
+    "bbox": [
+      36,
+      1107,
+      924,
+      1608
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 4,
+    "name": "2",
+    "bbox": [
+      34,
+      1109,
+      925,
+      1610
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 5,
+    "name": "3",
+    "bbox": [
+      947,
+      1107,
+      1835,
+      1608
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 6,
+    "name": "3",
+    "bbox": [
+      949,
+      1109,
+      1840,
+      1610
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 7,
+    "name": "4",
+    "bbox": [
+      36,
+      1643,
+      924,
+      2144
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 8,
+    "name": "4",
+    "bbox": [
+      38,
+      1643,
+      929,
+      2144
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 9,
+    "name": "5",
+    "bbox": [
+      947,
+      1644,
+      1835,
+      2144
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 10,
+    "name": "5",
+    "bbox": [
+      947,
+      1644,
+      1838,
+      2145
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 11,
+    "name": "6",
+    "bbox": [
+      36,
+      2179,
+      924,
+      2680
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 12,
+    "name": "6",
+    "bbox": [
+      38,
+      2181,
+      929,
+      2682
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 13,
+    "name": "7",
+    "bbox": [
+      947,
+      2180,
+      1835,
+      2680
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 14,
+    "name": "7",
+    "bbox": [
+      946,
+      2178,
+      1837,
+      2679
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 15,
+    "name": "8",
+    "bbox": [
+      36,
+      2715,
+      924,
+      3216
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 16,
+    "name": "8",
+    "bbox": [
+      35,
+      2716,
+      926,
+      3217
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 17,
+    "name": "9",
+    "bbox": [
+      947,
+      2716,
+      1835,
+      3216
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 18,
+    "name": "9",
+    "bbox": [
+      947,
+      2717,
+      1838,
+      3218
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 19,
+    "name": "10",
+    "bbox": [
+      36,
+      3251,
+      924,
+      3752
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 20,
+    "name": "10",
+    "bbox": [
+      38,
+      3253,
+      929,
+      3754
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 21,
+    "name": "11",
+    "bbox": [
+      947,
+      3252,
+      1835,
+      3752
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 22,
+    "name": "11",
+    "bbox": [
+      947,
+      3252,
+      1838,
+      3753
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 23,
+    "name": "12",
+    "bbox": [
+      36,
+      3787,
+      924,
+      4288
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 24,
+    "name": "12",
+    "bbox": [
+      35,
+      3788,
+      926,
+      4289
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 25,
+    "name": "13",
+    "bbox": [
+      947,
+      3788,
+      1835,
+      4288
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 26,
+    "name": "13",
+    "bbox": [
+      945,
+      3788,
+      1836,
+      4289
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 27,
+    "name": "14",
+    "bbox": [
+      36,
+      4323,
+      924,
+      4824
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 28,
+    "name": "14",
+    "bbox": [
+      36,
+      4325,
+      927,
+      4826
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 29,
+    "name": "15",
+    "bbox": [
+      947,
+      4324,
+      1835,
+      4824
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 30,
+    "name": "15",
+    "bbox": [
+      947,
+      4325,
+      1838,
+      4826
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 31,
+    "name": "16",
+    "bbox": [
+      36,
+      4859,
+      924,
+      5360
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 32,
+    "name": "16",
+    "bbox": [
+      36,
+      4860,
+      927,
+      5361
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 33,
+    "name": "17",
+    "bbox": [
+      947,
+      4860,
+      1835,
+      5360
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 34,
+    "name": "17",
+    "bbox": [
+      947,
+      4860,
+      1838,
+      5361
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 35,
+    "name": "18",
+    "bbox": [
+      36,
+      5395,
+      924,
+      5896
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 36,
+    "name": "18",
+    "bbox": [
+      33,
+      5396,
+      924,
+      5897
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 37,
+    "name": "19",
+    "bbox": [
+      947,
+      5396,
+      1835,
+      5896
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 38,
+    "name": "19",
+    "bbox": [
+      948,
+      5396,
+      1839,
+      5897
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 39,
+    "name": "20",
+    "bbox": [
+      36,
+      5931,
+      924,
+      6432
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 40,
+    "name": "20",
+    "bbox": [
+      38,
+      5932,
+      929,
+      6433
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 41,
+    "name": "21",
+    "bbox": [
+      947,
+      5932,
+      1835,
+      6432
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 42,
+    "name": "21",
+    "bbox": [
+      947,
+      5932,
+      1838,
+      6433
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 43,
+    "name": "22",
+    "bbox": [
+      36,
+      6467,
+      924,
+      6968
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 44,
+    "name": "22",
+    "bbox": [
+      35,
+      6469,
+      926,
+      6970
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 45,
+    "name": "23",
+    "bbox": [
+      947,
+      6468,
+      1835,
+      6968
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 46,
+    "name": "23",
+    "bbox": [
+      946,
+      6469,
+      1837,
+      6970
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 47,
+    "name": "24",
+    "bbox": [
+      36,
+      7003,
+      924,
+      7504
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 48,
+    "name": "24",
+    "bbox": [
+      32,
+      7002,
+      923,
+      7503
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 49,
+    "name": "25",
+    "bbox": [
+      947,
+      7004,
+      1835,
+      7504
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 50,
+    "name": "25",
+    "bbox": [
+      944,
+      7006,
+      1835,
+      7507
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 51,
+    "name": "26",
+    "bbox": [
+      36,
+      7539,
+      924,
+      8040
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 52,
+    "name": "26",
+    "bbox": [
+      35,
+      7541,
+      926,
+      8042
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 53,
+    "name": "27",
+    "bbox": [
+      947,
+      7540,
+      1835,
+      8040
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 54,
+    "name": "27",
+    "bbox": [
+      946,
+      7540,
+      1837,
+      8041
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 55,
+    "name": "28",
+    "bbox": [
+      36,
+      8075,
+      924,
+      8576
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 56,
+    "name": "28",
+    "bbox": [
+      36,
+      8077,
+      927,
+      8578
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 57,
+    "name": "29",
+    "bbox": [
+      947,
+      8076,
+      1835,
+      8576
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 58,
+    "name": "29",
+    "bbox": [
+      948,
+      8077,
+      1839,
+      8578
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 59,
+    "name": "30",
+    "bbox": [
+      36,
+      8611,
+      924,
+      9112
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 60,
+    "name": "30",
+    "bbox": [
+      36,
+      8611,
+      927,
+      9112
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 61,
+    "name": "31",
+    "bbox": [
+      947,
+      8612,
+      1835,
+      9112
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 62,
+    "name": "31",
+    "bbox": [
+      948,
+      8612,
+      1839,
+      9113
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 63,
+    "name": "32",
+    "bbox": [
+      36,
+      9147,
+      924,
+      9648
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 64,
+    "name": "32",
+    "bbox": [
+      35,
+      9149,
+      926,
+      9650
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 65,
+    "name": "33",
+    "bbox": [
+      947,
+      9148,
+      1835,
+      9648
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 66,
+    "name": "33",
+    "bbox": [
+      947,
+      9149,
+      1838,
+      9650
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 67,
+    "name": "34",
+    "bbox": [
+      36,
+      9683,
+      924,
+      10184
+    ],
+    "size": [
+      888,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 68,
+    "name": "34",
+    "bbox": [
+      36,
+      9685,
+      927,
+      10186
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  },
+  {
+    "index": 69,
+    "name": "35",
+    "bbox": [
+      947,
+      9684,
+      1835,
+      10184
+    ],
+    "size": [
+      888,
+      500
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 0,
+    "blend": "norm",
+    "tags": {
+      "vscg": 116,
+      "vsms": 296,
+      "vowv": 4,
+      "vogk": 1048,
+      "luni": 8,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "vstk": 828,
+      "sn2P": 4,
+      "fxrp": 16,
+      "lyvr": 4
+    }
+  },
+  {
+    "index": 70,
+    "name": "35",
+    "bbox": [
+      946,
+      9684,
+      1837,
+      10185
+    ],
+    "size": [
+      891,
+      501
+    ],
+    "visible": true,
+    "opacity": 255,
+    "clip": 1,
+    "blend": "norm",
+    "tags": {
+      "luni": 8,
+      "lnsr": 4,
+      "lyid": 4,
+      "clbl": 4,
+      "infx": 4,
+      "knko": 4,
+      "lspf": 4,
+      "lclr": 8,
+      "shmd": 72,
+      "PlLd": 480,
+      "SoLd": 1260,
+      "fxrp": 16
+    }
+  }
+]

@@ -1,0 +1,1717 @@
+[
+  {
+    "id": "picpark-detail-35",
+    "name": "PicPark · 详情页（1–35）",
+    "width": 1872,
+    "height": 10234,
+    "slots": [
+      {
+        "x": 38.0,
+        "y": 51.0,
+        "width": 1796.0,
+        "height": 1010.25
+      },
+      {
+        "x": 37.5,
+        "y": 1108.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 948.5,
+        "y": 1108.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 1644.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 1645.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 2180.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 2181.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 2716.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 2717.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 3252.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 3253.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 3788.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 3789.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 4324.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 4325.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 4860.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 4861.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 5396.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 5397.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 5932.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 5933.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 6468.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 6469.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 7004.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 7005.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 7540.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 7541.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 8076.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 8077.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 8612.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 8613.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 9148.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 9149.002742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 37.5,
+        "y": 9684.502742,
+        "width": 885.0,
+        "height": 497.994516
+      },
+      {
+        "x": 949.0,
+        "y": 9685.002742,
+        "width": 885.0,
+        "height": 497.994516
+      }
+    ],
+    "backgroundHex": "#2457F0",
+    "cornerRadius": 20.0,
+    "shadowOpacity": 0,
+    "imageFit": "fill",
+    "trimsToContent": true,
+    "bottomPadding": 51.002742,
+    "sourceName": "详情页（1-35）.psd"
+  },
+  {
+    "id": "picpark-redbook",
+    "name": "PicPark · 小红书卡片（1–34）",
+    "width": 7600,
+    "height": 1920,
+    "slots": [
+      {
+        "x": 59.5,
+        "y": 274.5,
+        "width": 1323.12,
+        "height": 745.0,
+        "cornerRadius": 40.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 50.0,
+        "shadowOffsetY": -30.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 4.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 56.0178,
+        "y": 1076.4072,
+        "width": 650.0,
+        "height": 365.3595,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 736.3246,
+        "y": 1076.4072,
+        "width": 650.0,
+        "height": 365.3595,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 56.0178,
+        "y": 1497.9219,
+        "width": 650.0,
+        "height": 365.3595,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 736.3246,
+        "y": 1497.9219,
+        "width": 650.0,
+        "height": 365.3595,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 1595.9865,
+        "y": 73.001,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 2274.3254,
+        "y": 73.001,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 1595.9865,
+        "y": 536.5884,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 2274.3254,
+        "y": 536.5884,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 1595.9865,
+        "y": 1001.1912,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 2274.3254,
+        "y": 1001.1912,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 1595.9865,
+        "y": 1464.8249,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 2274.3254,
+        "y": 1464.8249,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3135.9865,
+        "y": 71.001,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3814.3254,
+        "y": 71.001,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3135.9865,
+        "y": 534.5884,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3814.3254,
+        "y": 534.5884,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3135.9865,
+        "y": 999.1912,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3814.3254,
+        "y": 999.1912,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3135.9865,
+        "y": 1462.8249,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3814.3254,
+        "y": 1462.8249,
+        "width": 650.0,
+        "height": 382.2342,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 4675.9865,
+        "y": 71.001,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 5347.3254,
+        "y": 71.001,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 4675.9865,
+        "y": 534.5884,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 5347.3254,
+        "y": 534.5884,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 4675.9865,
+        "y": 999.1912,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 5347.3254,
+        "y": 999.1912,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 4675.9865,
+        "y": 1462.8249,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 5347.3254,
+        "y": 1462.8249,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 6215.9865,
+        "y": 71.001,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 6887.3254,
+        "y": 71.001,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 6215.9865,
+        "y": 504.5884,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 6887.3254,
+        "y": 504.5884,
+        "width": 656.6763,
+        "height": 386.1602,
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 27.0,
+        "shadowOffsetY": -0.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 2.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 6217.5,
+        "y": 952.5,
+        "width": 1323.12,
+        "height": 745.0,
+        "cornerRadius": 40.0,
+        "shadowOpacity": 0.28,
+        "shadowBlur": 50.0,
+        "shadowOffsetY": -30.0,
+        "shadowColorHex": "#B1C4E9",
+        "strokeWidth": 4.0,
+        "strokeColorHex": "#FFFFFF"
+      }
+    ],
+    "cornerRadius": 20.0,
+    "shadowOpacity": 0.0,
+    "shadowColorHex": "#B1C4E9",
+    "imageFit": "fill",
+    "backgroundImageName": "redbook_bg_banner.png",
+    "sourceName": "小红书v2.0.psd",
+    "subTemplates": [
+      {
+        "id": "picpark-redbook-1",
+        "name": "PicPark · 小红书 1 · 封面展示",
+        "width": 1440,
+        "height": 1920,
+        "slots": [
+          {
+            "x": 59.5,
+            "y": 274.5,
+            "width": 1323.12,
+            "height": 745.0,
+            "cornerRadius": 40.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 50.0,
+            "shadowOffsetY": -30.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 4.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 56.0178,
+            "y": 1076.4072,
+            "width": 650.0,
+            "height": 365.3595,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 736.3246,
+            "y": 1076.4072,
+            "width": 650.0,
+            "height": 365.3595,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 56.0178,
+            "y": 1497.9219,
+            "width": 650.0,
+            "height": 365.3595,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 736.3246,
+            "y": 1497.9219,
+            "width": 650.0,
+            "height": 365.3595,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          }
+        ],
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "shadowColorHex": "#B1C4E9",
+        "imageFit": "fill",
+        "backgroundImageName": "redbook_bg_1.png",
+        "sourceName": "小红书v2.0.psd"
+      },
+      {
+        "id": "picpark-redbook-2",
+        "name": "PicPark · 小红书 2 · 内页浏览（一）",
+        "width": 1440,
+        "height": 1920,
+        "slots": [
+          {
+            "x": 55.9865,
+            "y": 73.001,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 73.001,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 536.5884,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 536.5884,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 1001.1912,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 1001.1912,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 1464.8249,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 1464.8249,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          }
+        ],
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "shadowColorHex": "#B1C4E9",
+        "imageFit": "fill",
+        "backgroundImageName": "redbook_bg_2.png",
+        "sourceName": "小红书v2.0.psd"
+      },
+      {
+        "id": "picpark-redbook-3",
+        "name": "PicPark · 小红书 3 · 内页浏览（二）",
+        "width": 1440,
+        "height": 1920,
+        "slots": [
+          {
+            "x": 55.9865,
+            "y": 71.001,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 71.001,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 534.5884,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 534.5884,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 999.1912,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 999.1912,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 1462.8249,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 734.3254,
+            "y": 1462.8249,
+            "width": 650.0,
+            "height": 382.2342,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          }
+        ],
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "shadowColorHex": "#B1C4E9",
+        "imageFit": "fill",
+        "backgroundImageName": "redbook_bg_3.png",
+        "sourceName": "小红书v2.0.psd"
+      },
+      {
+        "id": "picpark-redbook-4",
+        "name": "PicPark · 小红书 4 · 内页浏览（三）",
+        "width": 1440,
+        "height": 1920,
+        "slots": [
+          {
+            "x": 55.9865,
+            "y": 71.001,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 727.3254,
+            "y": 71.001,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 534.5884,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 727.3254,
+            "y": 534.5884,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 999.1912,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 727.3254,
+            "y": 999.1912,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 1462.8249,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 727.3254,
+            "y": 1462.8249,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          }
+        ],
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "shadowColorHex": "#B1C4E9",
+        "imageFit": "fill",
+        "backgroundImageName": "redbook_bg_4.png",
+        "sourceName": "小红书v2.0.psd"
+      },
+      {
+        "id": "picpark-redbook-5",
+        "name": "PicPark · 小红书 5 · 尾页与主页引导",
+        "width": 1440,
+        "height": 1920,
+        "slots": [
+          {
+            "x": 55.9865,
+            "y": 71.001,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 727.3254,
+            "y": 71.001,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 55.9865,
+            "y": 504.5884,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 727.3254,
+            "y": 504.5884,
+            "width": 656.6763,
+            "height": 386.1602,
+            "cornerRadius": 20.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 27.0,
+            "shadowOffsetY": -0.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 2.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 57.5,
+            "y": 952.5,
+            "width": 1323.12,
+            "height": 745.0,
+            "cornerRadius": 40.0,
+            "shadowOpacity": 0.28,
+            "shadowBlur": 50.0,
+            "shadowOffsetY": -30.0,
+            "shadowColorHex": "#B1C4E9",
+            "strokeWidth": 4.0,
+            "strokeColorHex": "#FFFFFF"
+          }
+        ],
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "shadowColorHex": "#B1C4E9",
+        "imageFit": "fill",
+        "backgroundImageName": "redbook_bg_5.png",
+        "sourceName": "小红书v2.0.psd"
+      }
+    ]
+  },
+  {
+    "id": "picpark-hero",
+    "name": "PicPark · 电商主图",
+    "width": 6500,
+    "height": 1000,
+    "slots": [
+      {
+        "x": 26.4953,
+        "y": 33.3904,
+        "width": 946.9929,
+        "height": 547.2209,
+        "cornerRadius": 20.0,
+        "cornerRadii": [
+          20.0,
+          20.0,
+          0.0,
+          0.0
+        ],
+        "strokeWidth": 15.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 19.0111,
+        "y": 588.0669,
+        "width": 318.4987,
+        "height": 187.8403,
+        "cornerRadius": 0.0
+      },
+      {
+        "x": 340.5543,
+        "y": 588.0669,
+        "width": 318.4987,
+        "height": 187.8403,
+        "cornerRadius": 0.0
+      },
+      {
+        "x": 661.5543,
+        "y": 588.0661,
+        "width": 318.4987,
+        "height": 187.8403,
+        "cornerRadius": 0.0
+      },
+      {
+        "x": 19.0111,
+        "y": 779.0909,
+        "width": 318.4987,
+        "height": 187.8403,
+        "cornerRadius": 20.0,
+        "cornerRadii": [
+          0.0,
+          0.0,
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "x": 340.5543,
+        "y": 779.0909,
+        "width": 318.4987,
+        "height": 187.8403,
+        "cornerRadius": 0.0
+      },
+      {
+        "x": 661.5543,
+        "y": 779.0909,
+        "width": 318.4987,
+        "height": 187.8403,
+        "cornerRadius": 0.0
+      },
+      {
+        "x": 1126.4953,
+        "y": 33.3904,
+        "width": 946.9929,
+        "height": 547.2209,
+        "cornerRadius": 20.0,
+        "strokeWidth": 15.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 1119.1073,
+        "y": 633.165,
+        "width": 451.768,
+        "height": 254.1195,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 1665.6182,
+        "y": 607.2742,
+        "width": 415.4096,
+        "height": 233.6679,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 1401.8617,
+        "y": 699.025,
+        "width": 475.9336,
+        "height": 267.7127,
+        "cornerRadius": 15.0,
+        "shadowOpacity": 0.15,
+        "shadowBlur": 16.0,
+        "shadowOffsetY": -8.0
+      },
+      {
+        "x": 2226.4953,
+        "y": 33.3904,
+        "width": 946.9929,
+        "height": 547.2209,
+        "cornerRadius": 20.0,
+        "strokeWidth": 15.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 2219.1073,
+        "y": 633.165,
+        "width": 451.768,
+        "height": 254.1195,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 2765.6182,
+        "y": 607.2742,
+        "width": 415.4096,
+        "height": 233.6679,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 2501.8617,
+        "y": 699.025,
+        "width": 475.9336,
+        "height": 267.7127,
+        "cornerRadius": 15.0,
+        "shadowOpacity": 0.15,
+        "shadowBlur": 16.0,
+        "shadowOffsetY": -8.0
+      },
+      {
+        "x": 3326.4953,
+        "y": 33.3904,
+        "width": 946.9929,
+        "height": 547.2209,
+        "cornerRadius": 20.0,
+        "strokeWidth": 15.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 3319.1073,
+        "y": 633.165,
+        "width": 451.768,
+        "height": 254.1195,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 3865.6182,
+        "y": 607.2742,
+        "width": 415.4096,
+        "height": 233.6679,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 3601.8617,
+        "y": 699.025,
+        "width": 475.9336,
+        "height": 267.7127,
+        "cornerRadius": 15.0,
+        "shadowOpacity": 0.15,
+        "shadowBlur": 16.0,
+        "shadowOffsetY": -8.0
+      },
+      {
+        "x": 4426.4953,
+        "y": 33.3904,
+        "width": 946.9929,
+        "height": 547.2209,
+        "cornerRadius": 20.0,
+        "strokeWidth": 15.0,
+        "strokeColorHex": "#FFFFFF"
+      },
+      {
+        "x": 4419.1073,
+        "y": 633.165,
+        "width": 451.768,
+        "height": 254.1195,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 4965.6182,
+        "y": 607.2742,
+        "width": 415.4096,
+        "height": 233.6679,
+        "cornerRadius": 15.0
+      },
+      {
+        "x": 4701.8617,
+        "y": 699.025,
+        "width": 475.9336,
+        "height": 267.7127,
+        "cornerRadius": 15.0,
+        "shadowOpacity": 0.15,
+        "shadowBlur": 16.0,
+        "shadowOffsetY": -8.0
+      },
+      {
+        "x": 5526.4953,
+        "y": 33.3904,
+        "width": 946.9929,
+        "height": 547.2209,
+        "cornerRadius": 20.0,
+        "cornerRadii": [
+          20.0,
+          20.0,
+          0.0,
+          0.0
+        ],
+        "strokeWidth": 15.0,
+        "strokeColorHex": "#FFFFFF"
+      }
+    ],
+    "backgroundHex": "#F5F7FB",
+    "cornerRadius": 20.0,
+    "shadowOpacity": 0.0,
+    "imageFit": "fill",
+    "backgroundImageName": "clean_bg_banner.png",
+    "sourceName": "主图.psd",
+    "subTemplates": [
+      {
+        "id": "picpark-hero-1",
+        "name": "PicPark · 主图 1 · 封面合集",
+        "width": 1000,
+        "height": 1000,
+        "slots": [
+          {
+            "x": 26.4953,
+            "y": 33.3904,
+            "width": 946.9929,
+            "height": 547.2209,
+            "cornerRadius": 20.0,
+            "cornerRadii": [
+              20.0,
+              20.0,
+              0.0,
+              0.0
+            ],
+            "strokeWidth": 15.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 19.0111,
+            "y": 588.0669,
+            "width": 318.4987,
+            "height": 187.8403,
+            "cornerRadius": 0.0
+          },
+          {
+            "x": 340.5543,
+            "y": 588.0669,
+            "width": 318.4987,
+            "height": 187.8403,
+            "cornerRadius": 0.0
+          },
+          {
+            "x": 661.5543,
+            "y": 588.0661,
+            "width": 318.4987,
+            "height": 187.8403,
+            "cornerRadius": 0.0
+          },
+          {
+            "x": 19.0111,
+            "y": 779.0909,
+            "width": 318.4987,
+            "height": 187.8403,
+            "cornerRadius": 20.0,
+            "cornerRadii": [
+              0.0,
+              0.0,
+              0.0,
+              20.0
+            ]
+          },
+          {
+            "x": 340.5543,
+            "y": 779.0909,
+            "width": 318.4987,
+            "height": 187.8403,
+            "cornerRadius": 0.0
+          },
+          {
+            "x": 661.5543,
+            "y": 779.0909,
+            "width": 318.4987,
+            "height": 187.8403,
+            "cornerRadius": 0.0
+          }
+        ],
+        "backgroundHex": "#F5F7FB",
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "imageFit": "fill",
+        "backgroundImageName": "clean_bg_1.png",
+        "sourceName": "主图.psd"
+      },
+      {
+        "id": "picpark-hero-2",
+        "name": "PicPark · 主图 2 · 亮点展示（一）",
+        "width": 1000,
+        "height": 1000,
+        "slots": [
+          {
+            "x": 26.4953,
+            "y": 33.3904,
+            "width": 946.9929,
+            "height": 547.2209,
+            "cornerRadius": 20.0,
+            "strokeWidth": 15.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 19.1073,
+            "y": 633.165,
+            "width": 451.768,
+            "height": 254.1195,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 565.6182,
+            "y": 607.2742,
+            "width": 415.4096,
+            "height": 233.6679,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 301.8617,
+            "y": 699.025,
+            "width": 475.9336,
+            "height": 267.7127,
+            "cornerRadius": 15.0,
+            "shadowOpacity": 0.15,
+            "shadowBlur": 16.0,
+            "shadowOffsetY": -8.0
+          }
+        ],
+        "backgroundHex": "#F5F7FB",
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "imageFit": "fill",
+        "backgroundImageName": "clean_bg_2.png",
+        "sourceName": "主图.psd"
+      },
+      {
+        "id": "picpark-hero-3",
+        "name": "PicPark · 主图 3 · 亮点展示（二）",
+        "width": 1000,
+        "height": 1000,
+        "slots": [
+          {
+            "x": 26.4953,
+            "y": 33.3904,
+            "width": 946.9929,
+            "height": 547.2209,
+            "cornerRadius": 20.0,
+            "strokeWidth": 15.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 19.1073,
+            "y": 633.165,
+            "width": 451.768,
+            "height": 254.1195,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 565.6182,
+            "y": 607.2742,
+            "width": 415.4096,
+            "height": 233.6679,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 301.8617,
+            "y": 699.025,
+            "width": 475.9336,
+            "height": 267.7127,
+            "cornerRadius": 15.0,
+            "shadowOpacity": 0.15,
+            "shadowBlur": 16.0,
+            "shadowOffsetY": -8.0
+          }
+        ],
+        "backgroundHex": "#F5F7FB",
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "imageFit": "fill",
+        "backgroundImageName": "clean_bg_3.png",
+        "sourceName": "主图.psd"
+      },
+      {
+        "id": "picpark-hero-4",
+        "name": "PicPark · 主图 4 · 亮点展示（三）",
+        "width": 1000,
+        "height": 1000,
+        "slots": [
+          {
+            "x": 26.4953,
+            "y": 33.3904,
+            "width": 946.9929,
+            "height": 547.2209,
+            "cornerRadius": 20.0,
+            "strokeWidth": 15.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 19.1073,
+            "y": 633.165,
+            "width": 451.768,
+            "height": 254.1195,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 565.6182,
+            "y": 607.2742,
+            "width": 415.4096,
+            "height": 233.6679,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 301.8617,
+            "y": 699.025,
+            "width": 475.9336,
+            "height": 267.7127,
+            "cornerRadius": 15.0,
+            "shadowOpacity": 0.15,
+            "shadowBlur": 16.0,
+            "shadowOffsetY": -8.0
+          }
+        ],
+        "backgroundHex": "#F5F7FB",
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "imageFit": "fill",
+        "backgroundImageName": "clean_bg_4.png",
+        "sourceName": "主图.psd"
+      },
+      {
+        "id": "picpark-hero-5",
+        "name": "PicPark · 主图 5 · 亮点展示（四）",
+        "width": 1000,
+        "height": 1000,
+        "slots": [
+          {
+            "x": 26.4953,
+            "y": 33.3904,
+            "width": 946.9929,
+            "height": 547.2209,
+            "cornerRadius": 20.0,
+            "strokeWidth": 15.0,
+            "strokeColorHex": "#FFFFFF"
+          },
+          {
+            "x": 19.1073,
+            "y": 633.165,
+            "width": 451.768,
+            "height": 254.1195,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 565.6182,
+            "y": 607.2742,
+            "width": 415.4096,
+            "height": 233.6679,
+            "cornerRadius": 15.0
+          },
+          {
+            "x": 301.8617,
+            "y": 699.025,
+            "width": 475.9336,
+            "height": 267.7127,
+            "cornerRadius": 15.0,
+            "shadowOpacity": 0.15,
+            "shadowBlur": 16.0,
+            "shadowOffsetY": -8.0
+          }
+        ],
+        "backgroundHex": "#F5F7FB",
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "imageFit": "fill",
+        "backgroundImageName": "clean_bg_5.png",
+        "sourceName": "主图.psd"
+      },
+      {
+        "id": "picpark-hero-6",
+        "name": "PicPark · 主图 6 · 服务保障",
+        "width": 1000,
+        "height": 1000,
+        "slots": [
+          {
+            "x": 26.4953,
+            "y": 33.3904,
+            "width": 946.9929,
+            "height": 547.2209,
+            "cornerRadius": 20.0,
+            "cornerRadii": [
+              20.0,
+              20.0,
+              0.0,
+              0.0
+            ],
+            "strokeWidth": 15.0,
+            "strokeColorHex": "#FFFFFF"
+          }
+        ],
+        "backgroundHex": "#81AAFE",
+        "cornerRadius": 20.0,
+        "shadowOpacity": 0.0,
+        "imageFit": "fill",
+        "backgroundImageName": "clean_bg_6.png",
+        "sourceName": "主图.psd"
+      }
+    ]
+  }
+]

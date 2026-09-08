@@ -1,0 +1,520 @@
+{
+  "id": "picpark-hero",
+  "name": "PicPark · 电商主图",
+  "width": 6500,
+  "height": 1000,
+  "slots": [
+    {
+      "x": 26.4953,
+      "y": 33.3904,
+      "width": 946.9929,
+      "height": 547.2209,
+      "cornerRadius": 20.0,
+      "cornerRadii": [
+        20.0,
+        20.0,
+        0.0,
+        0.0
+      ],
+      "strokeWidth": 15.0,
+      "strokeColorHex": "#FFFFFF"
+    },
+    {
+      "x": 19.0111,
+      "y": 588.0669,
+      "width": 318.4987,
+      "height": 187.8403,
+      "cornerRadius": 0.0
+    },
+    {
+      "x": 340.5543,
+      "y": 588.0669,
+      "width": 318.4987,
+      "height": 187.8403,
+      "cornerRadius": 0.0
+    },
+    {
+      "x": 661.5543,
+      "y": 588.0661,
+      "width": 318.4987,
+      "height": 187.8403,
+      "cornerRadius": 0.0
+    },
+    {
+      "x": 19.0111,
+      "y": 779.0909,
+      "width": 318.4987,
+      "height": 187.8403,
+      "cornerRadius": 20.0,
+      "cornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        20.0
+      ]
+    },
+    {
+      "x": 340.5543,
+      "y": 779.0909,
+      "width": 318.4987,
+      "height": 187.8403,
+      "cornerRadius": 0.0
+    },
+    {
+      "x": 661.5543,
+      "y": 779.0909,
+      "width": 318.4987,
+      "height": 187.8403,
+      "cornerRadius": 0.0
+    },
+    {
+      "x": 1126.4953,
+      "y": 33.3904,
+      "width": 946.9929,
+      "height": 547.2209,
+      "cornerRadius": 20.0,
+      "strokeWidth": 15.0,
+      "strokeColorHex": "#FFFFFF"
+    },
+    {
+      "x": 1119.1073,
+      "y": 633.165,
+      "width": 451.768,
+      "height": 254.1195,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 1665.6182,
+      "y": 607.2742,
+      "width": 415.4096,
+      "height": 233.6679,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 1401.8617,
+      "y": 699.025,
+      "width": 475.9336,
+      "height": 267.7127,
+      "cornerRadius": 15.0,
+      "shadowOpacity": 0.15,
+      "shadowBlur": 16.0,
+      "shadowOffsetY": -8.0
+    },
+    {
+      "x": 2226.4953,
+      "y": 33.3904,
+      "width": 946.9929,
+      "height": 547.2209,
+      "cornerRadius": 20.0,
+      "strokeWidth": 15.0,
+      "strokeColorHex": "#FFFFFF"
+    },
+    {
+      "x": 2219.1073,
+      "y": 633.165,
+      "width": 451.768,
+      "height": 254.1195,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 2765.6182,
+      "y": 607.2742,
+      "width": 415.4096,
+      "height": 233.6679,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 2501.8617,
+      "y": 699.025,
+      "width": 475.9336,
+      "height": 267.7127,
+      "cornerRadius": 15.0,
+      "shadowOpacity": 0.15,
+      "shadowBlur": 16.0,
+      "shadowOffsetY": -8.0
+    },
+    {
+      "x": 3326.4953,
+      "y": 33.3904,
+      "width": 946.9929,
+      "height": 547.2209,
+      "cornerRadius": 20.0,
+      "strokeWidth": 15.0,
+      "strokeColorHex": "#FFFFFF"
+    },
+    {
+      "x": 3319.1073,
+      "y": 633.165,
+      "width": 451.768,
+      "height": 254.1195,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 3865.6182,
+      "y": 607.2742,
+      "width": 415.4096,
+      "height": 233.6679,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 3601.8617,
+      "y": 699.025,
+      "width": 475.9336,
+      "height": 267.7127,
+      "cornerRadius": 15.0,
+      "shadowOpacity": 0.15,
+      "shadowBlur": 16.0,
+      "shadowOffsetY": -8.0
+    },
+    {
+      "x": 4426.4953,
+      "y": 33.3904,
+      "width": 946.9929,
+      "height": 547.2209,
+      "cornerRadius": 20.0,
+      "strokeWidth": 15.0,
+      "strokeColorHex": "#FFFFFF"
+    },
+    {
+      "x": 4419.1073,
+      "y": 633.165,
+      "width": 451.768,
+      "height": 254.1195,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 4965.6182,
+      "y": 607.2742,
+      "width": 415.4096,
+      "height": 233.6679,
+      "cornerRadius": 15.0
+    },
+    {
+      "x": 4701.8617,
+      "y": 699.025,
+      "width": 475.9336,
+      "height": 267.7127,
+      "cornerRadius": 15.0,
+      "shadowOpacity": 0.15,
+      "shadowBlur": 16.0,
+      "shadowOffsetY": -8.0
+    },
+    {
+      "x": 5526.4953,
+      "y": 33.3904,
+      "width": 946.9929,
+      "height": 547.2209,
+      "cornerRadius": 20.0,
+      "cornerRadii": [
+        20.0,
+        20.0,
+        0.0,
+        0.0
+      ],
+      "strokeWidth": 15.0,
+      "strokeColorHex": "#FFFFFF"
+    }
+  ],
+  "backgroundHex": "#F5F7FB",
+  "cornerRadius": 20.0,
+  "shadowOpacity": 0.0,
+  "imageFit": "fill",
+  "backgroundImageName": "clean_bg_banner.png",
+  "sourceName": "主图.psd",
+  "subTemplates": [
+    {
+      "id": "picpark-hero-1",
+      "name": "PicPark · 主图 1 · 封面合集",
+      "width": 1000,
+      "height": 1000,
+      "slots": [
+        {
+          "x": 26.4953,
+          "y": 33.3904,
+          "width": 946.9929,
+          "height": 547.2209,
+          "cornerRadius": 20.0,
+          "cornerRadii": [
+            20.0,
+            20.0,
+            0.0,
+            0.0
+          ],
+          "strokeWidth": 15.0,
+          "strokeColorHex": "#FFFFFF"
+        },
+        {
+          "x": 19.0111,
+          "y": 588.0669,
+          "width": 318.4987,
+          "height": 187.8403,
+          "cornerRadius": 0.0
+        },
+        {
+          "x": 340.5543,
+          "y": 588.0669,
+          "width": 318.4987,
+          "height": 187.8403,
+          "cornerRadius": 0.0
+        },
+        {
+          "x": 661.5543,
+          "y": 588.0661,
+          "width": 318.4987,
+          "height": 187.8403,
+          "cornerRadius": 0.0
+        },
+        {
+          "x": 19.0111,
+          "y": 779.0909,
+          "width": 318.4987,
+          "height": 187.8403,
+          "cornerRadius": 20.0,
+          "cornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            20.0
+          ]
+        },
+        {
+          "x": 340.5543,
+          "y": 779.0909,
+          "width": 318.4987,
+          "height": 187.8403,
+          "cornerRadius": 0.0
+        },
+        {
+          "x": 661.5543,
+          "y": 779.0909,
+          "width": 318.4987,
+          "height": 187.8403,
+          "cornerRadius": 0.0
+        }
+      ],
+      "backgroundHex": "#F5F7FB",
+      "cornerRadius": 20.0,
+      "shadowOpacity": 0.0,
+      "imageFit": "fill",
+      "backgroundImageName": "clean_bg_1.png",
+      "sourceName": "主图.psd"
+    },
+    {
+      "id": "picpark-hero-2",
+      "name": "PicPark · 主图 2 · 亮点展示（一）",
+      "width": 1000,
+      "height": 1000,
+      "slots": [
+        {
+          "x": 26.4953,
+          "y": 33.3904,
+          "width": 946.9929,
+          "height": 547.2209,
+          "cornerRadius": 20.0,
+          "strokeWidth": 15.0,
+          "strokeColorHex": "#FFFFFF"
+        },
+        {
+          "x": 19.1073,
+          "y": 633.165,
+          "width": 451.768,
+          "height": 254.1195,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 565.6182,
+          "y": 607.2742,
+          "width": 415.4096,
+          "height": 233.6679,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 301.8617,
+          "y": 699.025,
+          "width": 475.9336,
+          "height": 267.7127,
+          "cornerRadius": 15.0,
+          "shadowOpacity": 0.15,
+          "shadowBlur": 16.0,
+          "shadowOffsetY": -8.0
+        }
+      ],
+      "backgroundHex": "#F5F7FB",
+      "cornerRadius": 20.0,
+      "shadowOpacity": 0.0,
+      "imageFit": "fill",
+      "backgroundImageName": "clean_bg_2.png",
+      "sourceName": "主图.psd"
+    },
+    {
+      "id": "picpark-hero-3",
+      "name": "PicPark · 主图 3 · 亮点展示（二）",
+      "width": 1000,
+      "height": 1000,
+      "slots": [
+        {
+          "x": 26.4953,
+          "y": 33.3904,
+          "width": 946.9929,
+          "height": 547.2209,
+          "cornerRadius": 20.0,
+          "strokeWidth": 15.0,
+          "strokeColorHex": "#FFFFFF"
+        },
+        {
+          "x": 19.1073,
+          "y": 633.165,
+          "width": 451.768,
+          "height": 254.1195,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 565.6182,
+          "y": 607.2742,
+          "width": 415.4096,
+          "height": 233.6679,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 301.8617,
+          "y": 699.025,
+          "width": 475.9336,
+          "height": 267.7127,
+          "cornerRadius": 15.0,
+          "shadowOpacity": 0.15,
+          "shadowBlur": 16.0,
+          "shadowOffsetY": -8.0
+        }
+      ],
+      "backgroundHex": "#F5F7FB",
+      "cornerRadius": 20.0,
+      "shadowOpacity": 0.0,
+      "imageFit": "fill",
+      "backgroundImageName": "clean_bg_3.png",
+      "sourceName": "主图.psd"
+    },
+    {
+      "id": "picpark-hero-4",
+      "name": "PicPark · 主图 4 · 亮点展示（三）",
+      "width": 1000,
+      "height": 1000,
+      "slots": [
+        {
+          "x": 26.4953,
+          "y": 33.3904,
+          "width": 946.9929,
+          "height": 547.2209,
+          "cornerRadius": 20.0,
+          "strokeWidth": 15.0,
+          "strokeColorHex": "#FFFFFF"
+        },
+        {
+          "x": 19.1073,
+          "y": 633.165,
+          "width": 451.768,
+          "height": 254.1195,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 565.6182,
+          "y": 607.2742,
+          "width": 415.4096,
+          "height": 233.6679,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 301.8617,
+          "y": 699.025,
+          "width": 475.9336,
+          "height": 267.7127,
+          "cornerRadius": 15.0,
+          "shadowOpacity": 0.15,
+          "shadowBlur": 16.0,
+          "shadowOffsetY": -8.0
+        }
+      ],
+      "backgroundHex": "#F5F7FB",
+      "cornerRadius": 20.0,
+      "shadowOpacity": 0.0,
+      "imageFit": "fill",
+      "backgroundImageName": "clean_bg_4.png",
+      "sourceName": "主图.psd"
+    },
+    {
+      "id": "picpark-hero-5",
+      "name": "PicPark · 主图 5 · 亮点展示（四）",
+      "width": 1000,
+      "height": 1000,
+      "slots": [
+        {
+          "x": 26.4953,
+          "y": 33.3904,
+          "width": 946.9929,
+          "height": 547.2209,
+          "cornerRadius": 20.0,
+          "strokeWidth": 15.0,
+          "strokeColorHex": "#FFFFFF"
+        },
+        {
+          "x": 19.1073,
+          "y": 633.165,
+          "width": 451.768,
+          "height": 254.1195,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 565.6182,
+          "y": 607.2742,
+          "width": 415.4096,
+          "height": 233.6679,
+          "cornerRadius": 15.0
+        },
+        {
+          "x": 301.8617,
+          "y": 699.025,
+          "width": 475.9336,
+          "height": 267.7127,
+          "cornerRadius": 15.0,
+          "shadowOpacity": 0.15,
+          "shadowBlur": 16.0,
+          "shadowOffsetY": -8.0
+        }
+      ],
+      "backgroundHex": "#F5F7FB",
+      "cornerRadius": 20.0,
+      "shadowOpacity": 0.0,
+      "imageFit": "fill",
+      "backgroundImageName": "clean_bg_5.png",
+      "sourceName": "主图.psd"
+    },
+    {
+      "id": "picpark-hero-6",
+      "name": "PicPark · 主图 6 · 服务保障",
+      "width": 1000,
+      "height": 1000,
+      "slots": [
+        {
+          "x": 26.4953,
+          "y": 33.3904,
+          "width": 946.9929,
+          "height": 547.2209,
+          "cornerRadius": 20.0,
+          "cornerRadii": [
+            20.0,
+            20.0,
+            0.0,
+            0.0
+          ],
+          "strokeWidth": 15.0,
+          "strokeColorHex": "#FFFFFF"
+        }
+      ],
+      "backgroundHex": "#81AAFE",
+      "cornerRadius": 20.0,
+      "shadowOpacity": 0.0,
+      "imageFit": "fill",
+      "backgroundImageName": "clean_bg_6.png",
+      "sourceName": "主图.psd"
+    }
+  ]
+}
