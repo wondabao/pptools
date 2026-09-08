@@ -11,7 +11,10 @@ final class IntegrationExportTests: XCTestCase {
     
     func testEndToEndDemoPDFToPicParkAndGenericExports() throws {
         let demoPDF = projectURL.appendingPathComponent("build/演示样稿.pdf")
-        XCTAssertTrue(FileManager.default.fileExists(atPath: demoPDF.path), "演示样稿.pdf 必须预先存在")
+        if !FileManager.default.fileExists(atPath: demoPDF.path) {
+            Self.createDemoPDF(at: demoPDF)
+        }
+        XCTAssertTrue(FileManager.default.fileExists(atPath: demoPDF.path), "演示样稿.pdf 必须存在")
         
         // 1. Render PDF at 144 DPI
         let images = try ImageEngine.renderPDF(demoPDF, dpi: 144)
@@ -88,5 +91,23 @@ final class IntegrationExportTests: XCTestCase {
         try ImageEngine.write(artboard1Image, to: heroOutUrl, format: .png)
         XCTAssertTrue(FileManager.default.fileExists(atPath: heroOutUrl.path))
         XCTAssertGreaterThan((try Data(contentsOf: heroOutUrl)).count, 1000)
+    }
+
+    private static func createDemoPDF(at url: URL) {
+        try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+        var box = CGRect(x: 0, y: 0, width: 960, height: 540)
+        guard let context = CGContext(url as CFURL, mediaBox: &box, nil) else { return }
+        for (index, title) in ["让每一页，都恰到好处。", "从文稿到长图，只需几步。", "本地处理，自在分享。"].enumerated() {
+            context.beginPDFPage(nil)
+            context.setFillColor(CGColor(red: 0.06 + Double(index) * 0.015, green: 0.22, blue: 0.23, alpha: 1))
+            context.fill(box)
+            context.setFillColor(CGColor(red: 0.36, green: 0.85, blue: 0.7, alpha: 1))
+            context.fill(CGRect(x: 60, y: 395, width: 60, height: 6))
+            let line = CTLineCreateWithAttributedString(NSAttributedString(string: title, attributes: [.font: NSFont.systemFont(ofSize: 42, weight: .medium), .foregroundColor: NSColor.white]))
+            context.textPosition = CGPoint(x: 60, y: 260)
+            CTLineDraw(line, context)
+            context.endPDFPage()
+        }
+        context.closePDF()
     }
 }
