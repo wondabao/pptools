@@ -179,6 +179,26 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
         }
     }
 
+    /// 模拟测试：直接唤起新版本更新弹窗（用于快速测试交互）
+    public func simulateUpdateForTesting() {
+        self.latestRelease = GitHubRelease(
+            tagName: "v0.1.1",
+            name: "v0.1.1 - 官方网址与自动更新增强",
+            body: "- 「关于」面板新增官方网站直达链接：https://www.yypic.com/\n- 支持 macOS 原生 DMG 安装包一键打包\n- 强化在线自动检测更新与下载安装体验",
+            htmlUrl: "https://github.com/wondabao/pptools/releases/tag/v0.1.1",
+            publishedAt: "2026-09-08T10:45:00Z",
+            assets: [
+                GitHubReleaseAsset(
+                    name: "有用工具-v0.1.1.dmg",
+                    browserDownloadUrl: "https://github.com/wondabao/pptools/releases/download/v0.1.1/有用工具-v0.1.1.dmg",
+                    size: 5767168
+                )
+            ]
+        )
+        self.hasNewVersion = true
+        self.showUpdateSheet = true
+    }
+
     /// 开始在线下载新版 DMG
     public func startDownload() {
         guard let release = latestRelease else { return }

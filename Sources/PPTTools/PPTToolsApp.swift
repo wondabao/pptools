@@ -86,6 +86,10 @@ struct PPTToolsApp: App {
                     updateManager.checkForUpdates(manual: true)
                 }
                 .disabled(updateManager.isChecking)
+
+                Button("测试：查看新版本弹窗…") {
+                    updateManager.simulateUpdateForTesting()
+                }
             }
             CommandGroup(replacing: .newItem) {
                 Button("导入 PPTX 或 PDF…") { model.chooseInput() }.keyboardShortcut("o").disabled(model.busy)
