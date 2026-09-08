@@ -18,8 +18,15 @@ jobs:
 
       - name: Build DMG installer
         run: |
+          swift --version
           chmod +x scripts/*.sh
-          ./scripts/build-dmg.sh
+          if ! bash -x ./scripts/build-dmg.sh 2>&1 | tee build.log; then
+            echo "### ❌ Build DMG Failed" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 60 build.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
 
       - name: Create GitHub Release and Upload Assets
         uses: softprops/action-gh-release@v2
