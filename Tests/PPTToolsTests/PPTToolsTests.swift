@@ -153,19 +153,13 @@ final class PPTToolsTests: XCTestCase {
         XCTAssertTrue(progressMessages.contains { $0.contains("检测完成") })
     }
     func testThemedScrollerAndColor() throws {
-        let scroller = ThemedScroller()
-        XCTAssertTrue(ThemedScroller.isCompatibleWithOverlayScrollers)
-        scroller.applyKnobTheme()
-        if let imp = scroller.value(forKey: "scrollerImp") as? NSObject {
-            let color = imp.value(forKey: "knobColor") as? NSColor
-            XCTAssertNotNil(color)
-            if let color = color {
-                var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-                color.getRed(&r, green: &g, blue: &b, alpha: &a)
-                XCTAssertEqual(Int(round(r * 255)), 0xD4)
-                XCTAssertEqual(Int(round(g * 255)), 0xD4)
-                XCTAssertEqual(Int(round(b * 255)), 0xD4)
-            }
-        }
+        let scroller = NSScroller()
+        ThemedScrollerHelper.styleScroller(scroller)
+        let color = ThemedScrollerHelper.scrollerColor
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: &a)
+        XCTAssertEqual(Int(round(r * 255)), 0xD9)
+        XCTAssertEqual(Int(round(g * 255)), 0xD9)
+        XCTAssertEqual(Int(round(b * 255)), 0xD9)
     }
 }

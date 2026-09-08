@@ -4,9 +4,7 @@ macOS 14+ 原生 SwiftUI 工具。文稿处理在本机完成，无第三方 Swi
 
 ## 界面预览
 
-| 浅色模式 | 深色模式 |
-| :---: | :---: |
-| ![工作台 - 浅色模式](docs/screenshots/workbench-light.png) | ![工作台 - 深色模式](docs/screenshots/workbench-dark.png) |
+![工作台界面](docs/screenshots/20260908093141.jpg)
 
 ## 构建与运行
 

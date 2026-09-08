@@ -37,13 +37,9 @@ struct ConvertExportSidebarContent: View {
 
     private var sourceFileSection: some View {
         SettingsGroup("源文件") {
-            if let file = model.pdf ?? model.source {
+            if let file = model.pdf {
                 HStack(spacing: 12) {
-                    if file.pathExtension.lowercased() == "pdf" {
-                        PDFIconView(size: 32)
-                    } else {
-                        PPTIconView(size: 32)
-                    }
+                    PDFIconView(size: 32)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(file.lastPathComponent)
                             .font(.system(size: 13, weight: .medium))
@@ -60,7 +56,7 @@ struct ConvertExportSidebarContent: View {
                     Spacer()
 
                     Button {
-                        model.chooseInput(pdfOnly: true)
+                        model.choosePDF()
                     } label: {
                         Image(systemName: "arrow.left.arrow.right")
                             .font(.system(size: 12, weight: .semibold))
@@ -72,12 +68,12 @@ struct ConvertExportSidebarContent: View {
                     .buttonStyle(.plain)
                     .disabled(model.busy)
                     .opacity(model.busy ? 0.4 : 1.0)
-                    .help("更换演示文稿…")
+                    .help("更换 PDF…")
                 }
                 .padding(.vertical, 4)
             } else {
                 Button {
-                    model.chooseInput(pdfOnly: true)
+                    model.choosePDF()
                 } label: {
                     HStack(spacing: 12) {
                         Image(systemName: "doc.badge.plus")
@@ -99,7 +95,7 @@ struct ConvertExportSidebarContent: View {
                 }
                 .buttonStyle(.plain)
                 .disabled(model.busy)
-                .help("导入演示文稿…")
+                .help("导入 PDF…")
             }
         }
     }
@@ -477,7 +473,7 @@ struct ConvertExportPreviewView: View {
                     }
 
                     Button {
-                        model.chooseInput(pdfOnly: true)
+                        model.choosePDF()
                     } label: {
                         Label("导入 PDF", systemImage: "doc.badge.plus")
                     }
@@ -710,7 +706,7 @@ struct ConvertExportPreviewView: View {
                         .foregroundStyle(AppleDesign.Colors.neutralAccent)
                 } actions: {
                     Button("选择 PDF 文件") {
-                        model.chooseInput(pdfOnly: true)
+                        model.choosePDF()
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(AppleDesign.Colors.neutralAccent)

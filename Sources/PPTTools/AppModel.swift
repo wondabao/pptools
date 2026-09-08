@@ -33,64 +33,104 @@ final class AppModel: ObservableObject {
         reloadTemplates()
     }
 
-    func chooseInput(pdfOnly: Bool = false) {
+    func choosePPTX() {
         let panel = NSOpenPanel()
-        panel.title = pdfOnly ? "导入 PDF" : "导入演示文稿或 PDF"
+        panel.title = "导入演示文稿"
         panel.prompt = "导入"
-        panel.message = pdfOnly ? "请选择用于制作详情图的 PDF 文件。" : "请选择 PPTX 演示文稿或 PDF 文件。"
-        panel.allowedContentTypes = pdfOnly ? [.pdf] : [.pdf, UTType(filenameExtension: "pptx") ?? .data]
+        panel.message = "请选择用于字体检测的 PPTX 演示文稿。"
+        panel.allowedContentTypes = [UTType(filenameExtension: "pptx") ?? .data]
         panel.allowsMultipleSelection = false
-        if panel.runModal() == .OK, let url = panel.url { load(url, companion: pdfOnly && report != nil) }
+        if panel.runModal() == .OK, let url = panel.url { inspectPPTX(url) }
+    }
+
+    func choosePDF() {
+        let panel = NSOpenPanel()
+        panel.title = "导入 PDF"
+        panel.prompt = "导入"
+        panel.message = "请选择用于图片生成的 PDF 文件。"
+        panel.allowedContentTypes = [.pdf]
+        panel.allowsMultipleSelection = false
+        if panel.runModal() == .OK, let url = panel.url { loadPDF(url) }
+    }
+
+    func chooseInput(pdfOnly: Bool = false) {
+        if pdfOnly || tab == 1 {
+            choosePDF()
+        } else {
+            choosePPTX()
+        }
+    }
+
+    func inspectPPTX(_ url: URL) {
+        guard !busy else { return }
+        let ext = url.pathExtension.lowercased()
+        guard ext == "pptx" else { error = "字体检测仅支持 .pptx 文件。"; return }
+        busy = true; progress = 0.05; error = nil
+        source = url
+        status = "正在解压并读取演示文稿结构…"
+        Task {
+            do {
+                let result = try await Task.detached(priority: .userInitiated) {
+                    try PPTXParser.inspect(url) { p, msg in
+                        Task { @MainActor in
+                            self.progress = p
+                            self.status = msg
+                        }
+                    }
+                }.value
+                report = result
+                source = url
+                status = "已检测 \(result.pageCount) 页，\(result.missing.count) 种字体缺失。"
+                progress = 1.0
+            } catch {
+                self.error = error.localizedDescription
+                status = "导入失败，可重新选择文件。"
+            }
+            busy = false
+        }
+    }
+
+    func loadPDF(_ url: URL) {
+        guard !busy else { return }
+        let ext = url.pathExtension.lowercased()
+        guard ext == "pdf" else { error = "图片生成仅支持 .pdf 文件。"; return }
+        busy = true; progress = 0.05; error = nil; resultFolder = nil
+        pdf = url
+        status = "正在准备渲染 PDF 页面…"
+        Task {
+            do {
+                let rendered = try await Task.detached(priority: .userInitiated) {
+                    try ImageEngine.renderPDF(url, dpi: 72) { p in
+                        Task { @MainActor in
+                            self.progress = p
+                            self.status = "正在渲染 PDF 页面 (\(Int(p * 100))%)…"
+                        }
+                    }
+                }.value
+                pdf = url
+                images = rendered
+                previewCardIndex = 0
+                status = "已加载 \(rendered.count) 页 PDF，可以调整模板并导出。"
+                progress = 1.0
+                updatePreview()
+            } catch {
+                self.error = error.localizedDescription
+                status = "导入失败，可重新选择文件。"
+            }
+            busy = false
+        }
     }
 
     func load(_ url: URL, companion: Bool = false) {
-        guard !busy else { return }
         let ext = url.pathExtension.lowercased()
-        guard ["pptx", "pdf"].contains(ext) else { error = "请选择 .pptx 或 .pdf 文件。"; return }
-        busy = true; progress = 0.05; error = nil; resultFolder = nil
-        if !companion { source = url }
         if ext == "pptx" {
             tab = 0
-            status = "正在解压并读取演示文稿结构…"
+            inspectPPTX(url)
+        } else if ext == "pdf" {
+            tab = 1
+            loadPDF(url)
         } else {
-            status = "正在准备渲染 PDF 页面…"
-        }
-        Task {
-            do {
-                if ext == "pptx" {
-                    let result = try await Task.detached(priority: .userInitiated) {
-                        try PPTXParser.inspect(url) { p, msg in
-                            Task { @MainActor in
-                                self.progress = p
-                                self.status = msg
-                            }
-                        }
-                    }.value
-                    revision += 1; previewTask?.cancel()
-                    report = result; source = url; pdf = nil; images = []; preview = nil; previewCards = []; previewCardIndex = 0; tab = 0
-                    status = "已检测 \(result.pageCount) 页，\(result.missing.count) 种字体缺失。"
-                    progress = 1.0
-                } else {
-                    let rendered = try await Task.detached(priority: .userInitiated) {
-                        try ImageEngine.renderPDF(url, dpi: 72) { p in
-                            Task { @MainActor in
-                                self.progress = p
-                                self.status = "正在渲染 PDF 页面 (\(Int(p * 100))%)…"
-                            }
-                        }
-                    }.value
-                    if companion, let report, rendered.count != report.pageCount {
-                        throw ToolError("PDF 共 \(rendered.count) 页，与 PPTX 的 \(report.pageCount) 页不同。请导入对应的 PDF。")
-                    }
-                    if !companion { source = url; report = nil }
-                    pdf = url; images = rendered; tab = 1
-                    previewCardIndex = 0
-                    status = "已加载 \(rendered.count) 页 PDF，可以调整模板并导出。"
-                    progress = 1.0
-                    updatePreview()
-                }
-            } catch { self.error = error.localizedDescription; status = "导入失败，可重新选择文件。" }
-            busy = false
+            error = "请选择 .pptx 或 .pdf 文件。"
         }
     }
 
@@ -242,7 +282,7 @@ final class AppModel: ObservableObject {
         guard let pdf, !busy, exportPages || exportLong else { return }
         let destination = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first ?? URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("Desktop")
         let config = config, dpi = dpi, format = format, pages = exportPages, long = exportLong
-        let baseName = (source ?? pdf)?.deletingPathExtension().lastPathComponent ?? ""
+        let baseName = pdf.deletingPathExtension().lastPathComponent
         busy = true; progress = 0; status = "正在生成导出图片至桌面…"; error = nil; resultFolder = nil
         Task {
             do {

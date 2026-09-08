@@ -106,7 +106,18 @@ struct MainView: View {
                 if let url {
                     Task { @MainActor in
                         withAnimation(AppleDesign.Animation.spring) {
-                            model.load(url)
+                            let ext = url.pathExtension.lowercased()
+                            if ext == "pptx" {
+                                selectedTab = .fontInspect
+                                model.tab = 0
+                                model.inspectPPTX(url)
+                            } else if ext == "pdf" {
+                                selectedTab = .convertExport
+                                model.tab = 1
+                                model.loadPDF(url)
+                            } else {
+                                model.error = "请拖入 .pptx 演示文稿或 .pdf 文件。"
+                            }
                         }
                     }
                 }
@@ -166,11 +177,7 @@ struct FontInspectSidebarContent: View {
             SettingsGroup("源文件") {
                 if let source = model.source {
                     HStack(spacing: 12) {
-                        if source.pathExtension.lowercased() == "pdf" {
-                            PDFIconView(size: 32)
-                        } else {
-                            PPTIconView(size: 32)
-                        }
+                        PPTIconView(size: 32)
                         VStack(alignment: .leading, spacing: 4) {
                             Text(source.lastPathComponent)
                                 .font(.system(size: 13, weight: .medium))
@@ -187,7 +194,7 @@ struct FontInspectSidebarContent: View {
                         Spacer()
 
                         Button {
-                            model.chooseInput()
+                            model.choosePPTX()
                         } label: {
                             Image(systemName: "arrow.left.arrow.right")
                                 .font(.system(size: 12, weight: .semibold))
@@ -204,7 +211,7 @@ struct FontInspectSidebarContent: View {
                     .padding(.vertical, 4)
                 } else {
                     Button {
-                        model.chooseInput()
+                        model.choosePPTX()
                     } label: {
                         HStack(spacing: 12) {
                             Image(systemName: "doc.badge.plus")
@@ -215,7 +222,7 @@ struct FontInspectSidebarContent: View {
                                 Text("未导入文件")
                                     .font(.system(size: 13, weight: .medium))
                                     .foregroundStyle(Color.primary)
-                                Text("支持 PPTX 与 PDF 演示文稿")
+                                Text("支持 PPTX 演示文稿")
                                     .font(.system(size: 11))
                                     .foregroundStyle(.secondary)
                             }
@@ -275,7 +282,7 @@ struct FontInspectSidebarFooter: View {
             Button {
                 if let url = model.source {
                     withAnimation(AppleDesign.Animation.spring) {
-                        model.load(url)
+                        model.inspectPPTX(url)
                     }
                 }
             } label: {
@@ -386,7 +393,7 @@ struct FontInspectView: View {
                     .foregroundStyle(AppleDesign.Colors.neutralAccent)
             } actions: {
                 Button("选择 PPTX 文件") {
-                    model.chooseInput()
+                    model.choosePPTX()
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(AppleDesign.Colors.neutralAccent)
@@ -414,7 +421,7 @@ struct FontInspectView: View {
                     Button {
                         if let url = model.source {
                             withAnimation(AppleDesign.Animation.spring) {
-                                model.load(url)
+                                model.inspectPPTX(url)
                             }
                         }
                     } label: {
@@ -434,13 +441,13 @@ struct FontInspectView: View {
                 }
 
                 Button {
-                    model.chooseInput()
+                    model.choosePPTX()
                 } label: {
-                    Label("导入文件", systemImage: "doc.badge.plus")
+                    Label("导入 PPTX", systemImage: "doc.badge.plus")
                 }
                 .keyboardShortcut("o", modifiers: .command)
                 .disabled(model.busy)
-                .help("导入演示文稿或 PDF (⌘O)")
+                .help("导入 PPTX 演示文稿 (⌘O)")
             }
         }
     }
@@ -464,11 +471,7 @@ struct FontInspectView: View {
             VStack(spacing: 8) {
                 if let source = model.source {
                     HStack(spacing: 8) {
-                        if source.pathExtension.lowercased() == "pdf" {
-                            PDFIconView(size: 18)
-                        } else {
-                            PPTIconView(size: 18)
-                        }
+                        PPTIconView(size: 18)
                         Text(source.lastPathComponent)
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundStyle(AppleDesign.Colors.primaryText)
