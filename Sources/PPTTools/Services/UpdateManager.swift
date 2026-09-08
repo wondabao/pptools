@@ -67,6 +67,18 @@ public struct GitHubReleaseAsset: Codable, Equatable {
     }
 }
 
+public enum UpdateAlertType: Identifiable {
+    case upToDate(String)
+    case error(String)
+
+    public var id: String {
+        switch self {
+        case .upToDate(let v): return "upToDate_\(v)"
+        case .error(let m): return "error_\(m)"
+        }
+    }
+}
+
 // MARK: - 更新管理器
 @MainActor
 public final class UpdateManager: NSObject, ObservableObject, URLSessionDownloadDelegate {
@@ -81,8 +93,7 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
     @Published public var hasNewVersion: Bool = false
     @Published public var latestRelease: GitHubRelease? = nil
     @Published public var showUpdateSheet: Bool = false
-    @Published public var showUpToDateAlert: Bool = false
-    @Published public var updateError: String? = nil
+    @Published public var activeAlert: UpdateAlertType? = nil
 
     // 下载状态
     @Published public var isDownloading: Bool = false
@@ -109,7 +120,6 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
     public func checkForUpdates(manual: Bool = false) {
         guard !isChecking else { return }
         isChecking = true
-        updateError = nil
 
         let urlString = "https://api.github.com/repos/\(githubOwner)/\(githubRepo)/releases/latest"
         guard let url = URL(string: urlString) else {
@@ -133,7 +143,7 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
                     // 尚未发布 Release
                     self.isChecking = false
                     if manual {
-                        self.showUpToDateAlert = true
+                        self.activeAlert = .upToDate(self.currentVersion)
                     }
                     return
                 }
@@ -157,13 +167,13 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
                 } else {
                     self.hasNewVersion = false
                     if manual {
-                        self.showUpToDateAlert = true
+                        self.activeAlert = .upToDate(self.currentVersion)
                     }
                 }
             } catch {
                 self.isChecking = false
                 if manual {
-                    self.updateError = error.localizedDescription
+                    self.activeAlert = .error(error.localizedDescription)
                 }
             }
         }
@@ -236,7 +246,7 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
         } catch {
             Task { @MainActor in
                 self.isDownloading = false
-                self.updateError = "保存安装包失败: \(error.localizedDescription)"
+                self.activeAlert = .error("保存安装包失败: \(error.localizedDescription)")
             }
         }
     }
@@ -246,7 +256,7 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
             Task { @MainActor in
                 if (error as NSError).code != NSURLErrorCancelled {
                     self.isDownloading = false
-                    self.updateError = "下载失败: \(error.localizedDescription)"
+                    self.activeAlert = .error("下载失败: \(error.localizedDescription)")
                 }
             }
         }

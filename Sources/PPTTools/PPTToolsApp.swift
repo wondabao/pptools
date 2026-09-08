@@ -51,18 +51,21 @@ struct PPTToolsApp: App {
                 .sheet(isPresented: $updateManager.showUpdateSheet) {
                     UpdateSheetView(updateManager: updateManager)
                 }
-                .alert("已是最新版本", isPresented: $updateManager.showUpToDateAlert) {
-                    Button("好", role: .cancel) {}
-                } message: {
-                    Text("当前已安装最新版本 (v\(updateManager.currentVersion))，无需更新。")
-                }
-                .alert("检查更新失败", isPresented: Binding(
-                    get: { updateManager.updateError != nil },
-                    set: { if !$0 { updateManager.updateError = nil } }
-                )) {
-                    Button("好", role: .cancel) {}
-                } message: {
-                    Text(updateManager.updateError ?? "网络连接异常，请稍后重试。")
+                .alert(item: $updateManager.activeAlert) { alert in
+                    switch alert {
+                    case .upToDate(let version):
+                        return Alert(
+                            title: Text("已是最新版本"),
+                            message: Text("当前已安装最新版本 (v\(version))，暂无可用更新。"),
+                            dismissButton: .default(Text("好"))
+                        )
+                    case .error(let message):
+                        return Alert(
+                            title: Text("检查更新失败"),
+                            message: Text(message),
+                            dismissButton: .default(Text("好"))
+                        )
+                    }
                 }
                 .task {
                     // 启动后延迟 1.5 秒静默检测更新，避免占用冷启动资源
