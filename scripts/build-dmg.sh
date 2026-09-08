@@ -22,7 +22,9 @@ GENERIC_DMG="$PWD/build/有用工具.dmg"
 echo "==> 准备打包 DMG (版本: v${VERSION})..."
 
 # 3. 准备临时目录
-TMP_DIR=$(mktemp -d /tmp/pptools-dmg.XXXXXX)
+TMP_DIR="$PWD/build/tmp-dmg"
+rm -rf "$TMP_DIR"
+mkdir -p "$TMP_DIR"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
 # 复制 App 到临时目录

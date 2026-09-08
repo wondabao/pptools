@@ -1,10 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+mkdir -p "$PWD/.build/clang-cache" "$PWD/build"
 export CLANG_MODULE_CACHE_PATH="$PWD/.build/clang-cache"
-# Generate AppIcon from official logo
-if [ "${SKIP_ICON_GENERATION:-0}" = "1" ]; then
-    : # Reuse the existing icon when only application code has changed.
+
+# Generate AppIcon from official logo if not already present
+if [ -f "Sources/PPTTools/Resources/AppIcon.icns" ]; then
+    : # Reuse existing icon
 elif [ -f "logo.png" ]; then
     swift scripts/make-icon.swift logo.png Sources/PPTTools/Resources/AppIcon.icns
 elif [ -f "logo.svg" ]; then
@@ -54,9 +56,9 @@ cat > "$app/Contents/Info.plist" <<'PLIST'
 </dict></array>
 </dict></plist>
 PLIST
-DEV_SIGN_ID=$(security find-identity -v -p codesigning | grep "Apple Development" | head -n 1 | awk -F '"' '{print $2}' || true)
-if [ -n "$DEV_SIGN_ID" ]; then
-    codesign --force --deep --sign "$DEV_SIGN_ID" "$app"
+DEV_SIGN_ID=$( (security find-identity -v -p codesigning 2>/dev/null || true) | (grep "Apple Development" || true) | head -n 1 | awk -F '"' '{print $2}' )
+if [ -n "${DEV_SIGN_ID:-}" ]; then
+    codesign --force --deep --sign "$DEV_SIGN_ID" "$app" || codesign --force --deep --sign - "$app"
 else
     codesign --force --deep --sign - "$app"
 fi
