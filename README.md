@@ -2,6 +2,12 @@
 
 macOS 14+ 原生 SwiftUI 工具。文稿处理在本机完成，无第三方 Swift 包。
 
+## 界面预览
+
+| 浅色模式 | 深色模式 |
+| :---: | :---: |
+| ![工作台 - 浅色模式](docs/screenshots/workbench-light.png) | ![工作台 - 深色模式](docs/screenshots/workbench-dark.png) |
+
 ## 构建与运行
 
 需要 macOS 14+、Xcode Command Line Tools（Swift 5.10 或更高版本）。当前已在 Apple Silicon / Swift 6.3.3 环境编译。
