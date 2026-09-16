@@ -114,35 +114,56 @@ struct ImageEngine {
         let nameWithoutExt = (name as NSString).deletingPathExtension
         let ext = (name as NSString).pathExtension.isEmpty ? "png" : (name as NSString).pathExtension
 
-        var candidateURLs: [URL] = []
-        if let url = Bundle.main.url(forResource: nameWithoutExt, withExtension: ext, subdirectory: "HeroAssets") {
-            candidateURLs.append(url)
+        let tryLoad: (URL?) -> CGImage? = { url in
+            guard let url, FileManager.default.fileExists(atPath: url.path),
+                  let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+                  let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
+                return nil
+            }
+            return cgImage
         }
-        if let url = Bundle.main.url(forResource: nameWithoutExt, withExtension: ext) {
-            candidateURLs.append(url)
+
+        // 1. 优先从 Bundle.main / Contents/Resources 中加载（标准独立 App 打包环境，绝不触发 Bundle.module 崩溃）
+        if let img = tryLoad(Bundle.main.url(forResource: nameWithoutExt, withExtension: ext, subdirectory: "HeroAssets")) {
+            return img
         }
+        if let img = tryLoad(Bundle.main.url(forResource: nameWithoutExt, withExtension: ext)) {
+            return img
+        }
+        if let resURL = Bundle.main.resourceURL {
+            if let img = tryLoad(resURL.appendingPathComponent("HeroAssets/\(name)")) { return img }
+            if let img = tryLoad(resURL.appendingPathComponent(name)) { return img }
+            if let img = tryLoad(resURL.appendingPathComponent("PPTTools_PPTTools.bundle/\(name)")) { return img }
+            if let img = tryLoad(resURL.appendingPathComponent("PPTTools_PPTTools.bundle/HeroAssets/\(name)")) { return img }
+        }
+
+        // 2. 本地开发 / 测试环境回退
+        let sourceURL = URL(fileURLWithPath: #filePath)
+        let root = sourceURL.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let localCandidates = [
+            root.appendingPathComponent("Templates/PicPark_Hero/assets").appendingPathComponent(name),
+            root.appendingPathComponent("Templates/PicPark_RedBook/assets").appendingPathComponent(name),
+            root.appendingPathComponent("Sources/PPTTools/Resources/HeroAssets").appendingPathComponent(name)
+        ]
+        for url in localCandidates {
+            if let img = tryLoad(url) {
+                return img
+            }
+        }
+
         #if SWIFT_PACKAGE
-        if let url = Bundle.module.url(forResource: nameWithoutExt, withExtension: ext, subdirectory: "HeroAssets") {
-            candidateURLs.append(url)
-        }
-        if let url = Bundle.module.url(forResource: nameWithoutExt, withExtension: ext) {
-            candidateURLs.append(url)
+        // 仅在上述途径未找到、且 module bundle 可用时尝试
+        let mainBundlePath = Bundle.main.bundleURL.appendingPathComponent("PPTTools_PPTTools.bundle").path
+        if FileManager.default.fileExists(atPath: mainBundlePath) {
+            if let url = Bundle.module.url(forResource: nameWithoutExt, withExtension: ext, subdirectory: "HeroAssets"), let img = tryLoad(url) {
+                return img
+            }
+            if let url = Bundle.module.url(forResource: nameWithoutExt, withExtension: ext), let img = tryLoad(url) {
+                return img
+            }
         }
         #endif
 
-        let sourceURL = URL(fileURLWithPath: #filePath)
-        let root = sourceURL.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        candidateURLs.append(root.appendingPathComponent("Templates/PicPark_Hero/assets").appendingPathComponent(name))
-        candidateURLs.append(root.appendingPathComponent("Templates/PicPark_RedBook/assets").appendingPathComponent(name))
-        candidateURLs.append(root.appendingPathComponent("Sources/PPTTools/Resources/HeroAssets").appendingPathComponent(name))
-
-        for url in candidateURLs {
-            if FileManager.default.fileExists(atPath: url.path),
-               let source = CGImageSourceCreateWithURL(url as CFURL, nil),
-               let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) {
-                return cgImage
-            }
-        }
         return nil
     }
 
@@ -294,7 +315,7 @@ struct ImageEngine {
         guard let custom = config.custom, custom.id == "picpark-redbook" || custom.id == "picpark-redbook-1" else { return }
 
         let titleText = config.redBookTitle ?? "红苹果设计师求职作品集"
-        let subtitleText = config.redBookSubtitle ?? "求职简历丨PSD+AI格式丨支持修改"
+        let subtitleText = config.redBookSubtitle ?? "求职简历丨PPTX格式丨支持修改"
 
         let maxAvailableWidth = (1200.0 - 71.0) * geometryScale
 

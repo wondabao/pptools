@@ -86,10 +86,6 @@ struct PPTToolsApp: App {
                     updateManager.checkForUpdates(manual: true)
                 }
                 .disabled(updateManager.isChecking)
-
-                Button("测试：查看新版本弹窗…") {
-                    updateManager.simulateUpdateForTesting()
-                }
             }
             CommandGroup(replacing: .newItem) {
                 Button("导入 PPTX 或 PDF…") { model.chooseInput() }.keyboardShortcut("o").disabled(model.busy)
@@ -113,9 +109,12 @@ struct PPTToolsApp: App {
         let range = (text as NSString).range(of: "https://www.yypic.com/")
         attrString.addAttribute(.link, value: url, range: range)
 
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? updateManager.currentVersion
         var options: [NSApplication.AboutPanelOptionKey: Any] = [
             .credits: attrString,
-            .applicationName: "有用工具"
+            .applicationName: "有用工具",
+            .applicationVersion: version,
+            .version: "" // 置空以去除 (Build) 括号，仅显示纯版本号例如 "版本 1.0.1"
         ]
         if let iconURL = Bundle.main.url(forResource: "AppIcon", withExtension: "icns") ?? Bundle.module.url(forResource: "AppIcon", withExtension: "icns"),
            let icon = NSImage(contentsOf: iconURL) {

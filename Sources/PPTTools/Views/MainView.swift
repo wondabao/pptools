@@ -386,18 +386,15 @@ struct FontInspectView: View {
             }
             .padding(AppleDesign.Spacing.lg)
         } else {
-            // Official ContentUnavailableView Empty State
-            ContentUnavailableView {
+            VStack(spacing: AppleDesign.Spacing.md) {
                 Image(systemName: "doc.badge.plus")
                     .font(.system(size: 48, weight: .light))
                     .foregroundStyle(AppleDesign.Colors.neutralAccent)
-            } actions: {
+
                 Button("选择 PPTX 文件") {
                     model.choosePPTX()
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(AppleDesign.Colors.neutralAccent)
-                .controlSize(.regular)
+                .buttonStyle(EmptyStatePrimaryButtonStyle())
                 .disabled(model.busy)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -161,7 +161,7 @@ struct ConvertExportSidebarContent: View {
     }
 
     private var isDefaultSubtitle: Bool {
-        model.config.redBookSubtitle == nil || model.config.redBookSubtitle == "求职简历丨PSD+AI格式丨支持修改"
+        model.config.redBookSubtitle == nil || model.config.redBookSubtitle == "求职简历丨PPTX格式丨支持修改"
     }
 
     private var headerTextSection: some View {
@@ -199,8 +199,8 @@ struct ConvertExportSidebarContent: View {
 
                 SettingsRow("次文本") {
                     HStack(spacing: 6) {
-                        TextField("求职简历丨PSD+AI格式丨支持修改", text: Binding(
-                            get: { model.config.redBookSubtitle ?? "求职简历丨PSD+AI格式丨支持修改" },
+                        TextField("求职简历丨PPTX格式丨支持修改", text: Binding(
+                            get: { model.config.redBookSubtitle ?? "求职简历丨PPTX格式丨支持修改" },
                             set: {
                                 model.config.redBookSubtitle = $0
                                 model.updatePreview()
@@ -350,6 +350,18 @@ struct ConvertExportFooterView: View {
         model.pdf != nil && !model.busy && (model.exportPages || model.exportLong)
     }
 
+    private static func standalonePageBpp(dpi: Double, isJPEG: Bool) -> Double {
+        if isJPEG {
+            if dpi <= 90 { return 0.30 }
+            if dpi <= 180 { return 0.21 }
+            return 0.15
+        } else {
+            if dpi <= 90 { return 1.08 }
+            if dpi <= 180 { return 0.82 }
+            return 0.55
+        }
+    }
+
     private var estimatedSizeText: String {
         guard model.exportPages || model.exportLong else {
             return "请至少选择一项导出内容"
@@ -358,65 +370,58 @@ struct ConvertExportFooterView: View {
             return "准备就绪"
         }
 
-        // Calibrated empirical bytes per pixel based on actual exports
-        let pageBpp: Double = (model.format == .jpeg) ? 0.13 : 0.45
-        let stitchedBpp: Double = (model.format == .jpeg) ? 0.16 : 0.58
+        let isJPEG = (model.format == .jpeg)
         var totalBytes: Double = 0
 
-        // 1. Estimate standalone pages if enabled
+        // 1. 分页导出预估（单页矢量放大渲染，根据用户实际导出 DPI 计算）
         if model.exportPages {
+            let dpiScale = model.dpi / 72.0
+            let pageBpp = Self.standalonePageBpp(dpi: model.dpi, isJPEG: isJPEG)
             for img in model.images {
-                let px = Double(img.width * img.height)
-                totalBytes += px * pageBpp
+                let pageW = ceil(Double(img.width) * dpiScale)
+                let pageH = ceil(Double(img.height) * dpiScale)
+                totalBytes += (pageW * pageH) * pageBpp
             }
         }
 
-        // 2. Estimate long stitched image or multi-cards if enabled
+        // 2. 长图 / 多卡片套图预估（由多张不同幻灯片及背景组合，信息熵高，实测长图 PNG 为 0.945 BPP，JPEG 为 0.30 BPP）
         if model.exportLong {
-            if let custom = model.config.custom {
-                let baseOutWidth = model.config.templateOutputWidth ?? Double(custom.subTemplates?.first?.width ?? custom.width)
-                if let subs = custom.subTemplates, !subs.isEmpty {
-                    var slideOffset = 0
-                    for subTpl in subs {
-                        guard slideOffset < model.images.count else { break }
-                        let count = min(model.images.count - slideOffset, subTpl.slots.count)
-                        guard count > 0 else { break }
-                        slideOffset += count
+            let stitchedBpp = isJPEG ? 0.30 : 0.945
+            let custom = model.config.custom
+            if let subs = custom?.subTemplates, !subs.isEmpty {
+                // 多画板套图（如电商主图、小红书卡片）
+                let baseOutWidth = model.config.templateOutputWidth ?? Double(subs.first?.width ?? custom?.width ?? 1000)
+                var slideOffset = 0
+                for subTpl in subs {
+                    guard slideOffset < model.images.count else { break }
+                    let count = min(model.images.count - slideOffset, subTpl.slots.count)
+                    guard count > 0 else { break }
+                    slideOffset += count
 
-                        let w = baseOutWidth
-                        let h = Double(subTpl.height) * (baseOutWidth / Double(subTpl.width))
-                        totalBytes += (w * h) * stitchedBpp
-                    }
-                } else {
-                    var detailCount = model.images.count
-                    if detailCount > 1 && detailCount % 2 == 0 {
-                        detailCount -= 1
-                    }
-                    if detailCount > 0 {
-                        let effectiveSizes = Array(repeating: CGSize(width: 1920, height: 1080), count: detailCount)
-                        if let (refSize, _) = try? ImageEngine.layout(sizes: effectiveSizes, config: model.config) {
-                            let w = baseOutWidth
-                            let h = ceil(refSize.height * baseOutWidth / refSize.width)
-                            totalBytes += (w * h) * stitchedBpp
-                        }
-                    }
+                    let w = baseOutWidth
+                    let h = ceil(Double(subTpl.height) * (baseOutWidth / Double(subTpl.width)))
+                    totalBytes += (w * h) * stitchedBpp
                 }
             } else {
-                let w = model.config.width
-                let h = Double(model.images.count) * (w * 9.0 / 16.0)
-                totalBytes += (w * h) * stitchedBpp
+                // 详情长图或普通拼接长图（直接使用 ImageEngine 实际布局测量精确尺寸）
+                var detailImages = model.images
+                let isDetailLong = (custom?.id == "picpark-detail-35" || (custom != nil && custom?.subTemplates == nil && custom?.id.contains("hero") != true && custom?.id.contains("redbook") != true))
+                if isDetailLong && detailImages.count > 1 && detailImages.count % 2 == 0 {
+                    detailImages = Array(detailImages.dropLast())
+                }
+                let effectiveImages = (custom?.subTemplates != nil && detailImages.count > (custom?.slots.count ?? 0)) ? Array(detailImages.prefix(custom?.slots.count ?? 0)) : detailImages
+
+                if let (refSize, _) = try? ImageEngine.layout(sizes: effectiveImages.map { CGSize(width: $0.width, height: $0.height) }, config: model.config),
+                   let outSize = try? ImageEngine.outputSize(reference: refSize, config: model.config) {
+                    let longPixels = outSize.width * outSize.height
+                    totalBytes += longPixels * stitchedBpp
+                }
             }
         }
 
-        let mb = totalBytes / (1024 * 1024)
-        if mb < 0.1 {
-            let kb = max(1, Int(round(totalBytes / 1024)))
-            return "导出图片预估：\(kb)KB"
-        } else if mb < 10 {
-            return String(format: "导出图片预估：%.1fMB", mb)
-        } else {
-            return "导出图片预估：\(Int(round(mb)))MB"
-        }
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .file
+        return "导出图片预估：" + formatter.string(fromByteCount: Int64(round(totalBytes)))
     }
 
     var body: some View {
@@ -700,17 +705,15 @@ struct ConvertExportPreviewView: View {
     private var emptyPreviewStage: some View {
         Group {
             if model.pdf == nil {
-                ContentUnavailableView {
+                VStack(spacing: AppleDesign.Spacing.md) {
                     Image(systemName: "doc.badge.plus")
                         .font(.system(size: 48, weight: .light))
                         .foregroundStyle(AppleDesign.Colors.neutralAccent)
-                } actions: {
+
                     Button("选择 PDF 文件") {
                         model.choosePDF()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(AppleDesign.Colors.neutralAccent)
-                    .controlSize(.regular)
+                    .buttonStyle(EmptyStatePrimaryButtonStyle())
                     .disabled(model.busy)
                 }
             } else {

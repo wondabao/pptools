@@ -893,3 +893,25 @@ extension View {
         self.modifier(ThemedScrollBarsModifier())
     }
 }
+
+// MARK: - Persistent Empty State Primary Button Style (Never Fades on Inactive Window)
+public struct EmptyStatePrimaryButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var enabled
+    @Environment(\.colorScheme) private var scheme
+
+    public init() {}
+
+    public func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.system(size: 13, weight: .medium))
+            .padding(.horizontal, 18)
+            .frame(height: 32)
+            .foregroundStyle(enabled ? (scheme == .dark ? Color.black : Color.white) : Color.secondary)
+            .background(
+                enabled ? AppleDesign.Colors.neutralAccent : Color.primary.opacity(0.06),
+                in: RoundedRectangle(cornerRadius: 6, style: .continuous)
+            )
+            .opacity(configuration.isPressed ? 0.78 : 1.0)
+    }
+}
+

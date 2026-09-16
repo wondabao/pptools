@@ -34,6 +34,10 @@ done
 if [ -d Sources/PPTTools/Resources/HeroAssets ]; then
     cp -r Sources/PPTTools/Resources/HeroAssets "$app/Contents/Resources/"
 fi
+BUNDLE_DIR=$(find .build -name "PPTTools_PPTTools.bundle" -type d | head -n 1)
+if [ -n "$BUNDLE_DIR" ] && [ -d "$BUNDLE_DIR" ]; then
+    cp -R "$BUNDLE_DIR" "$app/Contents/Resources/"
+fi
 cat > "$app/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -47,8 +51,8 @@ cat > "$app/Contents/Info.plist" <<'PLIST'
 <key>CFBundleIconFile</key><string>AppIcon</string>
 <key>CFBundleIconName</key><string>AppIcon</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>0.1.1</string>
-<key>CFBundleVersion</key><string>2</string>
+<key>CFBundleShortVersionString</key><string>1.0.1</string>
+<key>CFBundleVersion</key><string>1.0.1</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>NSHighResolutionCapable</key><true/>
 <key>CFBundleDocumentTypes</key><array><dict>
