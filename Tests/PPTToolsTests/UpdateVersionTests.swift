@@ -58,7 +58,7 @@ final class UpdateVersionTests: XCTestCase {
         XCTAssertFalse(manager.isExtracting)
         XCTAssertFalse(manager.isReadyToRestart)
         XCTAssertNil(manager.stagedAppURL)
-        XCTAssertEqual(SemanticVersion(manager.currentVersion), SemanticVersion("1.1.0"))
+        XCTAssertEqual(SemanticVersion(manager.currentVersion), SemanticVersion("1.2.0"))
     }
 
     @MainActor

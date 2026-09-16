@@ -305,6 +305,9 @@ struct FontInspectSidebarFooter: View {
 
 struct FontInspectView: View {
     @EnvironmentObject var model: AppModel
+    @State private var selectedFontIDs: Set<FontItem.ID> = []
+    @State private var fontsToReplace: [String] = []
+    @State private var showReplaceSheet: Bool = false
 
     var body: some View {
         Group {
@@ -316,9 +319,11 @@ struct FontInspectView: View {
                     fontInspectReinspectingBanner
                 }
 
+                // 顶部选择状态与批量操作栏
+                fontSelectionBar(report: report)
 
-                // Modern Font Inventory Table
-                Table(report.fonts) {
+                // Modern Font Inventory Table with Multi-Selection
+                Table(report.fonts, selection: $selectedFontIDs) {
                     TableColumn("字体名称") { font in
                         FontNameCell(fontName: font.name)
                     }
@@ -341,22 +346,67 @@ struct FontInspectView: View {
                     .width(min: 100, ideal: 160)
 
                     TableColumn("操作") { font in
-                        if !font.embedded.isEmpty {
+                        HStack(spacing: 6) {
                             Button {
-                                model.extract(font)
+                                fontsToReplace = [font.name]
+                                showReplaceSheet = true
                             } label: {
-                                Label("提取", systemImage: "arrow.down.circle")
+                                Label("替换", systemImage: "arrow.triangle.2.circlepath")
                                     .font(.system(size: 11))
                             }
                             .buttonStyle(.bordered)
                             .controlSize(.small)
-                            .disabled(model.busy)
+                            .help("将「\(font.name)」替换为系统自带字体")
+
+                            if !font.embedded.isEmpty {
+                                Button {
+                                    model.extract(font)
+                                } label: {
+                                    Label("提取", systemImage: "arrow.down.circle")
+                                        .font(.system(size: 11))
+                                }
+                                .buttonStyle(.bordered)
+                                .controlSize(.small)
+                                .disabled(model.busy)
+                                .help("提取此内嵌字体文件")
+                            }
                         }
                     }
-                    .width(min: 90, ideal: 110, max: 130)
+                    .width(min: 120, ideal: 140, max: 160)
+                }
+                .contextMenu(forSelectionType: FontItem.ID.self) { items in
+                    if !items.isEmpty {
+                        Button {
+                            fontsToReplace = Array(items).sorted()
+                            showReplaceSheet = true
+                        } label: {
+                            Label(items.count == 1 ? "替换「\(items.first!)」为系统字体…" : "批量替换所选 \(items.count) 个字体…", systemImage: "arrow.triangle.2.circlepath")
+                        }
+
+                        Button {
+                            let names = report.fonts.filter { items.contains($0.id) }.map(\.name).joined(separator: "\n")
+                            NSPasteboard.general.clearContents()
+                            NSPasteboard.general.setString(names, forType: .string)
+                        } label: {
+                            Label("复制字体名称", systemImage: "doc.on.doc")
+                        }
+                    }
+                } primaryAction: { items in
+                    if !items.isEmpty {
+                        fontsToReplace = Array(items).sorted()
+                        showReplaceSheet = true
+                    }
                 }
                 .appleCard(cornerRadius: AppleDesign.Radius.md, padding: 0)
                 .themedScrollBars()
+                .background {
+                    // 全局 ⌘A 快捷键支持全选检测出来的字体列表
+                    Button("") {
+                        selectedFontIDs = Set(report.fonts.map(\.id))
+                    }
+                    .keyboardShortcut("a", modifiers: .command)
+                    .opacity(0)
+                }
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                         ThemedScrollerHelper.applyRecursively(to: NSApp.keyWindow?.contentView)
@@ -400,9 +450,34 @@ struct FontInspectView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
+        .sheet(isPresented: $showReplaceSheet) {
+            if let source = model.source {
+                FontReplaceSheetView(
+                    sourceFonts: fontsToReplace,
+                    sourceURL: source
+                ) { newFile in
+                    model.resultFolder = newFile.deletingLastPathComponent()
+                    model.status = "字体替换完成，新文件：\(newFile.lastPathComponent)"
+                    model.inspectPPTX(newFile)
+                }
+            }
+        }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 if let report = model.report {
+                    Button {
+                        if !selectedFontIDs.isEmpty {
+                            fontsToReplace = Array(selectedFontIDs).sorted()
+                        } else {
+                            fontsToReplace = report.fonts.map(\.name)
+                        }
+                        showReplaceSheet = true
+                    } label: {
+                        Label("替换字体", systemImage: "arrow.triangle.2.circlepath")
+                    }
+                    .disabled(model.busy || report.fonts.isEmpty)
+                    .help("将选中的字体或全部字体替换为系统自带字体")
+
                     Button {
                         NSPasteboard.general.clearContents()
                         NSPasteboard.general.setString(
@@ -447,6 +522,76 @@ struct FontInspectView: View {
                 .help("导入 PPTX 演示文稿 (⌘O)")
             }
         }
+    }
+
+    // MARK: - Selection Bar
+
+    @ViewBuilder
+    private func fontSelectionBar(report: FontReport) -> some View {
+        HStack(spacing: 12) {
+            if selectedFontIDs.isEmpty {
+                Text("共检测到 \(report.fonts.count) 种字体声明")
+                    .font(.system(size: 12))
+                    .foregroundStyle(AppleDesign.Colors.secondaryText)
+
+                Button("全选 (⌘A)") {
+                    selectedFontIDs = Set(report.fonts.map(\.id))
+                }
+                .buttonStyle(.plain)
+                .font(.system(size: 12))
+                .foregroundStyle(AppleDesign.Colors.neutralAccent)
+
+                Spacer()
+
+                Button {
+                    fontsToReplace = report.fonts.map(\.name)
+                    showReplaceSheet = true
+                } label: {
+                    Label("全部替换为系统字体…", systemImage: "arrow.triangle.2.circlepath")
+                        .font(.system(size: 11))
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+            } else {
+                HStack(spacing: 6) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 12))
+                        .foregroundStyle(AppleDesign.Colors.neutralAccent)
+
+                    Text("已选 \(selectedFontIDs.count) / \(report.fonts.count) 个字体")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(AppleDesign.Colors.primaryText)
+                }
+
+                Button("全选") {
+                    selectedFontIDs = Set(report.fonts.map(\.id))
+                }
+                .buttonStyle(.plain)
+                .font(.system(size: 12))
+                .foregroundStyle(AppleDesign.Colors.neutralAccent)
+
+                Button("取消选择") {
+                    selectedFontIDs.removeAll()
+                }
+                .buttonStyle(.plain)
+                .font(.system(size: 12))
+                .foregroundStyle(AppleDesign.Colors.secondaryText)
+
+                Spacer()
+
+                Button {
+                    fontsToReplace = Array(selectedFontIDs).sorted()
+                    showReplaceSheet = true
+                } label: {
+                    Label("批量替换所选字体 (\(selectedFontIDs.count))", systemImage: "arrow.triangle.2.circlepath")
+                        .font(.system(size: 11, weight: .medium))
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(AppleDesign.Colors.neutralAccent)
+                .controlSize(.small)
+            }
+        }
+        .padding(.horizontal, 4)
     }
 
     // MARK: - Loading Stage with Progress Bar

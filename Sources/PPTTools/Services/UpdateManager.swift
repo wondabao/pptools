@@ -88,7 +88,7 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
     public let githubOwner = "wondabao"
     public let githubRepo = "pptools"
 
-    @Published public var currentVersion: String = "1.1.0"
+    @Published public var currentVersion: String = "1.2.0"
     @Published public var isChecking: Bool = false
     @Published public var hasNewVersion: Bool = false
     @Published public var latestRelease: GitHubRelease? = nil
