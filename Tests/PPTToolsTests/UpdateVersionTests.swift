@@ -50,4 +50,30 @@ final class UpdateVersionTests: XCTestCase {
         XCTAssertEqual(release.dmgAsset?.name, "有用工具-v0.2.0.dmg")
         XCTAssertEqual(release.dmgAsset?.size, 5600000)
     }
+
+    @MainActor
+    func testUpdateManagerInitialState() {
+        let manager = UpdateManager()
+        XCTAssertFalse(manager.isDownloading)
+        XCTAssertFalse(manager.isExtracting)
+        XCTAssertFalse(manager.isReadyToRestart)
+        XCTAssertNil(manager.stagedAppURL)
+        XCTAssertEqual(SemanticVersion(manager.currentVersion), SemanticVersion("1.1.0"))
+    }
+
+    @MainActor
+    func testPrepareDownloadedUpdateWithLocalDMG() async throws {
+        let dmgPath = "build/有用工具-v1.0.1.dmg"
+        guard FileManager.default.fileExists(atPath: dmgPath) else { return }
+
+        let manager = UpdateManager()
+        await manager.prepareDownloadedUpdate(dmgURL: URL(fileURLWithPath: dmgPath))
+
+        XCTAssertTrue(manager.isReadyToRestart)
+        XCTAssertNotNil(manager.stagedAppURL)
+        if let staged = manager.stagedAppURL {
+            XCTAssertTrue(FileManager.default.fileExists(atPath: staged.path))
+            try? FileManager.default.removeItem(at: staged)
+        }
+    }
 }

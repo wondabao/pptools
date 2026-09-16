@@ -88,18 +88,21 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
     public let githubOwner = "wondabao"
     public let githubRepo = "pptools"
 
-    @Published public var currentVersion: String = "1.0.1"
+    @Published public var currentVersion: String = "1.1.0"
     @Published public var isChecking: Bool = false
     @Published public var hasNewVersion: Bool = false
     @Published public var latestRelease: GitHubRelease? = nil
     @Published public var showUpdateSheet: Bool = false
     @Published public var activeAlert: UpdateAlertType? = nil
 
-    // 下载状态
+    // 下载与准备状态
     @Published public var isDownloading: Bool = false
     @Published public var downloadProgress: Double = 0.0
     @Published public var downloadSpeedText: String = ""
     @Published public var downloadedDMGURL: URL? = nil
+    @Published public var isExtracting: Bool = false
+    @Published public var isReadyToRestart: Bool = false
+    @Published public var stagedAppURL: URL? = nil
     @Published public var installStatusMessage: String = ""
 
     private var downloadTask: URLSessionDownloadTask?
@@ -110,7 +113,8 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
 
     public override init() {
         super.init()
-        if let ver = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, !ver.isEmpty {
+        if let bundleId = Bundle.main.bundleIdentifier, bundleId.contains("pptools"),
+           let ver = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, !ver.isEmpty {
             self.currentVersion = ver
         }
     }
@@ -182,16 +186,16 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
     /// 模拟测试：直接唤起新版本更新弹窗（用于快速测试交互）
     public func simulateUpdateForTesting() {
         self.latestRelease = GitHubRelease(
-            tagName: "v0.1.1",
-            name: "v0.1.1 - 官方网址与自动更新增强",
-            body: "- 「关于」面板新增官方网站直达链接：https://www.yypic.com/\n- 支持 macOS 原生 DMG 安装包一键打包\n- 强化在线自动检测更新与下载安装体验",
-            htmlUrl: "https://github.com/wondabao/pptools/releases/tag/v0.1.1",
-            publishedAt: "2026-09-08T10:45:00Z",
+            tagName: "v1.1.1",
+            name: "v1.1.1 - 自动重启更新体验测试",
+            body: "- 支持下载完成后一键重启更新\n- 强化原生零依赖架构",
+            htmlUrl: "https://github.com/wondabao/pptools/releases/tag/v1.1.0",
+            publishedAt: "2026-09-16T11:30:00Z",
             assets: [
                 GitHubReleaseAsset(
-                    name: "有用工具-v0.1.1.dmg",
-                    browserDownloadUrl: "https://github.com/wondabao/pptools/releases/download/v0.1.1/有用工具-v0.1.1.dmg",
-                    size: 5767168
+                    name: "有用工具-v1.0.1.dmg",
+                    browserDownloadUrl: "https://github.com/wondabao/pptools/releases/download/v1.0.1/有用工具-v1.0.1.dmg",
+                    size: 9646899
                 )
             ]
         )
@@ -204,6 +208,8 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
         guard let release = latestRelease else { return }
         if let asset = release.dmgAsset, let downloadURL = URL(string: asset.browserDownloadUrl) {
             isDownloading = true
+            isExtracting = false
+            isReadyToRestart = false
             downloadProgress = 0.0
             installStatusMessage = "正在连接下载服务器…"
             downloadTask = urlSession.downloadTask(with: downloadURL)
@@ -220,15 +226,180 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
         downloadTask?.cancel()
         downloadTask = nil
         isDownloading = false
+        isExtracting = false
+        isReadyToRestart = false
         downloadProgress = 0.0
         installStatusMessage = ""
     }
 
-    /// 打开下载到的 DMG 进行安装
+    /// 打开下载到的 DMG 进行手动安装
     public func openDownloadedDMG() {
         guard let dmgURL = downloadedDMGURL else { return }
         NSWorkspace.shared.open(dmgURL)
         installStatusMessage = "已打开安装镜像，请拖拽更新应用"
+    }
+
+    /// 在后台将下载的 DMG 挂载并提取 .app 到暂存区，以便随时一键重启完成更新
+    public func prepareDownloadedUpdate(dmgURL: URL) async {
+        isExtracting = true
+        isReadyToRestart = false
+        installStatusMessage = "下载完成，正在准备新版本…"
+
+        let extractResult: Result<URL, Error> = await Task.detached(priority: .userInitiated) {
+            do {
+                // 1. 挂载 DMG
+                let mountProcess = Process()
+                mountProcess.executableURL = URL(fileURLWithPath: "/usr/bin/hdiutil")
+                mountProcess.arguments = ["attach", "-nobrowse", "-readonly", "-plist", dmgURL.path]
+                let pipe = Pipe()
+                mountProcess.standardOutput = pipe
+                try mountProcess.run()
+                mountProcess.waitUntilExit()
+
+                guard mountProcess.terminationStatus == 0 else {
+                    throw NSError(domain: "UpdateError", code: Int(mountProcess.terminationStatus), userInfo: [NSLocalizedDescriptionKey: "挂载更新镜像失败"])
+                }
+
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                guard let plist = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any],
+                      let entities = plist["system-entities"] as? [[String: Any]] else {
+                    throw NSError(domain: "UpdateError", code: -2, userInfo: [NSLocalizedDescriptionKey: "解析更新镜像结构失败"])
+                }
+
+                var mountPoint: String? = nil
+                for entity in entities {
+                    if let mp = entity["mount-point"] as? String {
+                        mountPoint = mp
+                        break
+                    }
+                }
+
+                guard let finalMountPoint = mountPoint else {
+                    throw NSError(domain: "UpdateError", code: -3, userInfo: [NSLocalizedDescriptionKey: "未找到镜像挂载卷"])
+                }
+
+                defer {
+                    let detachProc = Process()
+                    detachProc.executableURL = URL(fileURLWithPath: "/usr/bin/hdiutil")
+                    detachProc.arguments = ["detach", finalMountPoint, "-force"]
+                    try? detachProc.run()
+                    detachProc.waitUntilExit()
+                }
+
+                // 2. 在挂载卷内查找 .app
+                let mountURL = URL(fileURLWithPath: finalMountPoint)
+                let contents = try FileManager.default.contentsOfDirectory(at: mountURL, includingPropertiesForKeys: nil)
+                guard let appBundle = contents.first(where: { $0.pathExtension == "app" }) else {
+                    throw NSError(domain: "UpdateError", code: -4, userInfo: [NSLocalizedDescriptionKey: "镜像内未找到应用程序包"])
+                }
+
+                // 3. 复制到暂存目录
+                let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first ?? FileManager.default.temporaryDirectory
+                let updateDir = appSupport.appendingPathComponent("com.wondabao.pptools/Updates", isDirectory: true)
+                try FileManager.default.createDirectory(at: updateDir, withIntermediateDirectories: true)
+
+                let stagedApp = updateDir.appendingPathComponent(appBundle.lastPathComponent)
+                try? FileManager.default.removeItem(at: stagedApp)
+
+                let dittoProc = Process()
+                dittoProc.executableURL = URL(fileURLWithPath: "/usr/bin/ditto")
+                dittoProc.arguments = [appBundle.path, stagedApp.path]
+                try dittoProc.run()
+                dittoProc.waitUntilExit()
+
+                guard dittoProc.terminationStatus == 0 else {
+                    throw NSError(domain: "UpdateError", code: Int(dittoProc.terminationStatus), userInfo: [NSLocalizedDescriptionKey: "解压新版本失败"])
+                }
+
+                // 4. 清理隔离属性，避免 Gatekeeper 拦截
+                let xattrProc = Process()
+                xattrProc.executableURL = URL(fileURLWithPath: "/usr/bin/xattr")
+                xattrProc.arguments = ["-dr", "com.apple.quarantine", stagedApp.path]
+                try? xattrProc.run()
+                xattrProc.waitUntilExit()
+
+                return .success(stagedApp)
+            } catch {
+                return .failure(error)
+            }
+        }.value
+
+        isExtracting = false
+        switch extractResult {
+        case .success(let stagedApp):
+            self.stagedAppURL = stagedApp
+            self.isReadyToRestart = true
+            self.installStatusMessage = "新版本已准备就绪，点击「重启并更新」立即生效"
+        case .failure(let error):
+            self.isReadyToRestart = false
+            self.installStatusMessage = "自动准备更新失败，您可以点击「打开 DMG」手动更新"
+            self.activeAlert = .error("准备更新包失败: \(error.localizedDescription)")
+        }
+    }
+
+    /// 重启当前应用并自动完成新版本覆盖
+    public func relaunchAndInstall() {
+        guard let stagedApp = stagedAppURL else {
+            openDownloadedDMG()
+            return
+        }
+
+        var targetAppPath = Bundle.main.bundlePath
+        // 若在 DMG 卷内或非 .app 运行，回退至 /Applications/有用工具.app
+        if targetAppPath.hasPrefix("/Volumes/") || !targetAppPath.hasSuffix(".app") {
+            targetAppPath = "/Applications/有用工具.app"
+        }
+
+        let currentPID = ProcessInfo.processInfo.processIdentifier
+        let scriptPath = NSTemporaryDirectory() + "pptools_updater_\(currentPID).sh"
+
+        let scriptContent = """
+        #!/bin/bash
+        # 1. 等待原进程退出
+        COUNT=0
+        while kill -0 \(currentPID) 2>/dev/null; do
+            sleep 0.1
+            COUNT=$((COUNT + 1))
+            if [ $COUNT -ge 30 ]; then
+                kill -9 \(currentPID) 2>/dev/null || true
+                break
+            fi
+        done
+
+        # 2. 替换应用程序
+        rm -rf "\(targetAppPath)"
+        /usr/bin/ditto "\(stagedApp.path)" "\(targetAppPath)"
+        rm -rf "\(stagedApp.path)"
+
+        # 3. 移除隔离标识
+        /usr/bin/xattr -dr com.apple.quarantine "\(targetAppPath)" 2>/dev/null || true
+
+        # 4. 重新拉起新版应用
+        /usr/bin/open "\(targetAppPath)"
+
+        # 5. 清理脚本自身
+        rm -f "\(scriptPath)"
+        """
+
+        do {
+            try scriptContent.write(toFile: scriptPath, atomically: true, encoding: .utf8)
+            try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: scriptPath)
+
+            let proc = Process()
+            proc.executableURL = URL(fileURLWithPath: "/bin/bash")
+            proc.arguments = [scriptPath]
+            try proc.run()
+
+            // 正常退出应用
+            NSApp.terminate(nil)
+            // 兜底：若 1 秒后仍未退出强制退出，让后台脚本接管
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                exit(0)
+            }
+        } catch {
+            activeAlert = .error("启动更新脚本失败: \(error.localizedDescription)，请尝试手动安装。")
+            openDownloadedDMG()
+        }
     }
 
     // MARK: - URLSessionDownloadDelegate
@@ -259,9 +430,8 @@ public final class UpdateManager: NSObject, ObservableObject, URLSessionDownload
                 self.isDownloading = false
                 self.downloadProgress = 1.0
                 self.downloadedDMGURL = destination
-                self.installStatusMessage = "下载完成，点击下方按钮立即打开安装"
-                // 自动打开 DMG
-                self.openDownloadedDMG()
+                // 启动后台自动提取解包
+                await self.prepareDownloadedUpdate(dmgURL: destination)
             }
         } catch {
             Task { @MainActor in

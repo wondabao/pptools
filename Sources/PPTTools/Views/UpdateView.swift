@@ -13,15 +13,22 @@ public struct UpdateSheetView: View {
         VStack(spacing: 0) {
             // 头部：图标与版本信息
             HStack(spacing: 16) {
-                if let iconURL = Bundle.main.url(forResource: "AppIcon", withExtension: "icns") ?? Bundle.module.url(forResource: "AppIcon", withExtension: "icns"),
-                   let image = NSImage(contentsOf: iconURL) {
+                if let logo = loadCleanAppLogo() {
+                    Image(nsImage: logo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 48, height: 48)
+                        .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
+                } else if let iconURL = Bundle.main.url(forResource: "AppIcon", withExtension: "icns") ?? Bundle.module.url(forResource: "AppIcon", withExtension: "icns"),
+                          let image = NSImage(contentsOf: iconURL) {
                     Image(nsImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 56, height: 56)
+                        .frame(width: 48, height: 48)
+                        .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
                 } else {
                     Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
-                        .font(.system(size: 50))
+                        .font(.system(size: 48))
                         .foregroundStyle(AppleDesign.Colors.neutralAccent)
                 }
 
@@ -107,6 +114,63 @@ public struct UpdateSheetView: View {
                     .padding(.horizontal, 24)
                     .padding(.top, 14)
                     .padding(.bottom, 18)
+                } else if updateManager.isExtracting {
+                    HStack(spacing: 12) {
+                        ProgressView()
+                            .controlSize(.small)
+
+                        Text(updateManager.installStatusMessage.isEmpty ? "正在解压并准备新版本…" : updateManager.installStatusMessage)
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(AppleDesign.Colors.secondaryText)
+
+                        Spacer()
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 14)
+                    .padding(.bottom, 18)
+                } else if updateManager.isReadyToRestart {
+                    HStack(spacing: 12) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(Color.green)
+                            .font(.system(size: 18))
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("新版本已准备就绪")
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundStyle(AppleDesign.Colors.primaryText)
+
+                            Text("重启后即可自动完成更新")
+                                .font(.system(size: 11))
+                                .foregroundStyle(AppleDesign.Colors.secondaryText)
+                        }
+
+                        Spacer()
+
+                        if updateManager.downloadedDMGURL != nil {
+                            Button("手动安装…") {
+                                updateManager.openDownloadedDMG()
+                            }
+                            .buttonStyle(.plain)
+                            .font(.system(size: 11))
+                            .foregroundStyle(AppleDesign.Colors.tertiaryText)
+                        }
+
+                        Button("稍后") {
+                            updateManager.showUpdateSheet = false
+                            dismiss()
+                        }
+                        .buttonStyle(.bordered)
+
+                        Button("重启并更新") {
+                            updateManager.relaunchAndInstall()
+                        }
+                        .keyboardShortcut(.defaultAction)
+                        .buttonStyle(.borderedProminent)
+                        .tint(AppleDesign.Colors.neutralAccent)
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 14)
+                    .padding(.bottom, 18)
                 } else if updateManager.downloadedDMGURL != nil {
                     HStack(spacing: 12) {
                         Image(systemName: "checkmark.circle.fill")
@@ -167,5 +231,39 @@ public struct UpdateSheetView: View {
             }
         }
         .frame(width: 500, height: 380)
+    }
+
+    private func loadCleanAppLogo() -> NSImage? {
+        let tryLoad: (URL?) -> NSImage? = { url in
+            guard let url, FileManager.default.fileExists(atPath: url.path) else { return nil }
+            return NSImage(contentsOf: url)
+        }
+
+        // 1. Bundle.main 与 Contents/Resources (生产 .app 环境)
+        if let img = tryLoad(Bundle.main.url(forResource: "logo", withExtension: "png")) {
+            return img
+        }
+        if let resURL = Bundle.main.resourceURL {
+            if let img = tryLoad(resURL.appendingPathComponent("logo.png")) { return img }
+            if let img = tryLoad(resURL.appendingPathComponent("PPTTools_PPTTools.bundle/logo.png")) { return img }
+        }
+
+        // 2. 本地开发路径回退
+        let devPaths = [
+            "Sources/PPTTools/Resources/logo.png",
+            "logo.png"
+        ]
+        for p in devPaths {
+            if let img = tryLoad(URL(fileURLWithPath: p)) { return img }
+        }
+
+        // 3. Bundle.module 安全尝试
+        #if SWIFT_PACKAGE
+        if let moduleURL = Bundle.module.url(forResource: "logo", withExtension: "png") {
+            if let img = tryLoad(moduleURL) { return img }
+        }
+        #endif
+
+        return nil
     }
 }
