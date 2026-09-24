@@ -16,7 +16,11 @@ final class AppModel: ObservableObject {
     @Published var progress = 0.0
     @Published var error: String?
     @Published var config = StitchConfig()
-    @Published var dpi = 72.0
+    @Published var dpi = 72.0 {
+        didSet {
+            config.dpi = dpi
+        }
+    }
     @Published var format: ImageFormat = .png
     @Published var templates: [TemplateManifest] = []
     @Published var templateID = ""
@@ -27,6 +31,13 @@ final class AppModel: ObservableObject {
     @Published var templatePath = UserDefaults.standard.string(forKey: "templatePath") ?? NSHomeDirectory() + "/Desktop/PicPark"
     private var previewTask: Task<Void, Never>?
     private var revision = 0
+    private var activeSecurityScopedSource: URL?
+    private var activeSecurityScopedPDF: URL?
+
+    deinit {
+        activeSecurityScopedSource?.stopAccessingSecurityScopedResource()
+        activeSecurityScopedPDF?.stopAccessingSecurityScopedResource()
+    }
 
     init() {
         config.backgroundColorHex = "#2457F0"
@@ -65,6 +76,12 @@ final class AppModel: ObservableObject {
         guard !busy else { return }
         let ext = url.pathExtension.lowercased()
         guard ext == "pptx" else { error = "字体检测仅支持 .pptx 文件。"; return }
+        activeSecurityScopedSource?.stopAccessingSecurityScopedResource()
+        if url.startAccessingSecurityScopedResource() {
+            activeSecurityScopedSource = url
+        } else {
+            activeSecurityScopedSource = nil
+        }
         busy = true; progress = 0.05; error = nil
         source = url
         status = "正在解压并读取演示文稿结构…"
@@ -94,6 +111,12 @@ final class AppModel: ObservableObject {
         guard !busy else { return }
         let ext = url.pathExtension.lowercased()
         guard ext == "pdf" else { error = "图片生成仅支持 .pdf 文件。"; return }
+        activeSecurityScopedPDF?.stopAccessingSecurityScopedResource()
+        if url.startAccessingSecurityScopedResource() {
+            activeSecurityScopedPDF = url
+        } else {
+            activeSecurityScopedPDF = nil
+        }
         busy = true; progress = 0.05; error = nil; resultFolder = nil
         pdf = url
         status = "正在准备渲染 PDF 页面…"
@@ -295,19 +318,32 @@ final class AppModel: ObservableObject {
                     var createdPageFolder: URL? = nil
 
                     if pages || long {
-                        let rendered = try ImageEngine.renderPDF(pdf, dpi: dpi) { value in
-                            Task { @MainActor [weak self] in self?.progress = value * 0.65 }
-                        }
                         if pages {
                             let folderName = baseName.isEmpty ? "分页图片" : "\(baseName)-分页图片"
                             let pageFolder = staging.appendingPathComponent(folderName)
-                            try fm.createDirectory(at: pageFolder, withIntermediateDirectories: true)
-                            for (index, image) in rendered.enumerated() {
-                                let pageName = String(format: "%03d.%@", index + 1, format.ext)
-                                try ImageEngine.write(image, to: pageFolder.appendingPathComponent(pageName), format: format, dpi: dpi)
+                            try ImageEngine.exportPages(from: pdf, to: pageFolder, format: format, dpi: dpi) { value in
+                                Task { @MainActor [weak self] in
+                                    let factor = long ? 0.45 : 0.90
+                                    self?.progress = value * factor
+                                    self?.status = "正在导出分页图片 (\(Int(value * 100))%)…"
+                                }
                             }
                         }
                         if long {
+                            let maxSlotsNeeded: Int? = {
+                                if let subs = config.custom?.subTemplates, !subs.isEmpty {
+                                    return subs.reduce(0) { $0 + $1.slots.count }
+                                }
+                                return config.custom?.maxSupportedSlots
+                            }()
+                            let rendered = try ImageEngine.renderPDF(pdf, dpi: dpi, maxPages: maxSlotsNeeded) { value in
+                                Task { @MainActor [weak self] in
+                                    let base = pages ? 0.45 : 0.0
+                                    let scale = pages ? 0.45 : 0.90
+                                    self?.progress = base + value * scale
+                                    self?.status = "正在渲染长图页面 (\(Int(value * 100))%)…"
+                                }
+                            }
                             if let subs = config.custom?.subTemplates, !subs.isEmpty {
                                 let isRedBook = (config.custom?.id == "picpark-redbook")
                                 let names = isRedBook ?
@@ -322,24 +358,27 @@ final class AppModel: ObservableObject {
                                     let subImages = Array(rendered[slideOffset..<(slideOffset + count)])
                                     slideOffset += count
                                     var subConfig = config
+                                    subConfig.dpi = dpi
                                     subConfig.custom = subTpl
                                     let image = try ImageEngine.stitch(subImages, config: subConfig)
                                     let roleName = idx < names.count ? names[idx] : "第\(idx + 1)张"
                                     let filename = String(format: "%@_%02d_%@.%@", prefix, idx + 1, roleName, format.ext)
-                                    try ImageEngine.write(image, to: staging.appendingPathComponent(filename), format: format)
+                                    try ImageEngine.write(image, to: staging.appendingPathComponent(filename), format: format, dpi: dpi)
                                 }
                             } else {
                                 var detailImages = rendered
                                 if detailImages.count > 1 && detailImages.count % 2 == 0 {
                                     detailImages = Array(detailImages.dropLast())
                                 }
-                                let image = try ImageEngine.stitch(detailImages, config: config)
+                                var detailConfig = config
+                                detailConfig.dpi = dpi
+                                let image = try ImageEngine.stitch(detailImages, config: detailConfig)
                                 let filename: String = {
                                     if config.custom?.id == "picpark-hero" { return "电商主图." }
                                     if config.custom?.id == "picpark-redbook" { return "小红书卡片." }
                                     return "详情长图."
                                 }()
-                                try ImageEngine.write(image, to: staging.appendingPathComponent(filename + format.ext), format: format)
+                                try ImageEngine.write(image, to: staging.appendingPathComponent(filename + format.ext), format: format, dpi: dpi)
                             }
                         }
                     }

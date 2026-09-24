@@ -93,6 +93,64 @@ final class IntegrationExportTests: XCTestCase {
         XCTAssertGreaterThan((try Data(contentsOf: heroOutUrl)).count, 1000)
     }
 
+    @MainActor
+    func testDPIRenderingAndConfiguration() throws {
+        let demoPDF = projectURL.appendingPathComponent("build/演示样稿.pdf")
+        if !FileManager.default.fileExists(atPath: demoPDF.path) {
+            Self.createDemoPDF(at: demoPDF)
+        }
+
+        // Test 72 DPI (1x baseline)
+        let images72 = try ImageEngine.renderPDF(demoPDF, dpi: 72)
+        XCTAssertEqual(images72[0].width, 960)
+        XCTAssertEqual(images72[0].height, 540)
+
+        // Test 144 DPI (2x retina)
+        let images144 = try ImageEngine.renderPDF(demoPDF, dpi: 144)
+        XCTAssertEqual(images144[0].width, 1920)
+        XCTAssertEqual(images144[0].height, 1080)
+
+        // Test 216 DPI (3x super retina)
+        let images216 = try ImageEngine.renderPDF(demoPDF, dpi: 216)
+        XCTAssertEqual(images216[0].width, 2880)
+        XCTAssertEqual(images216[0].height, 1620)
+
+        // Test 300 DPI (print grade)
+        let images300 = try ImageEngine.renderPDF(demoPDF, dpi: 300)
+        XCTAssertEqual(images300[0].width, 4000)
+        XCTAssertEqual(images300[0].height, 2250)
+
+        // Verify AppModel defaults to 72.0 and supports mutation and synchronization to config
+        let model = AppModel()
+        XCTAssertEqual(model.dpi, 72.0)
+        XCTAssertEqual(model.config.dpi, 72.0)
+        model.dpi = 300.0
+        XCTAssertEqual(model.dpi, 300.0)
+        XCTAssertEqual(model.config.dpi, 300.0)
+
+        // Test Long/Template Image DPI Scaling
+        var stitchConfig72 = StitchConfig()
+        stitchConfig72.width = 1080
+        stitchConfig72.dpi = 72.0
+        let out72 = try ImageEngine.outputSize(reference: CGSize(width: 1080, height: 1000), config: stitchConfig72)
+        XCTAssertEqual(out72.width, 1080)
+        XCTAssertEqual(out72.height, 1000)
+
+        var stitchConfig144 = StitchConfig()
+        stitchConfig144.width = 1080
+        stitchConfig144.dpi = 144.0
+        let out144 = try ImageEngine.outputSize(reference: CGSize(width: 1080, height: 1000), config: stitchConfig144)
+        XCTAssertEqual(out144.width, 2160)
+        XCTAssertEqual(out144.height, 2000)
+
+        var stitchConfig300 = StitchConfig()
+        stitchConfig300.width = 1080
+        stitchConfig300.dpi = 300.0
+        let out300 = try ImageEngine.outputSize(reference: CGSize(width: 1080, height: 1000), config: stitchConfig300)
+        XCTAssertEqual(out300.width, 4500)
+        XCTAssertEqual(out300.height, 4167)
+    }
+
     private static func createDemoPDF(at url: URL) {
         try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
         var box = CGRect(x: 0, y: 0, width: 960, height: 540)

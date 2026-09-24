@@ -301,6 +301,19 @@ struct ConvertExportSidebarContent: View {
 
                 SettingsDivider()
 
+                SettingsMenuPickerRow(
+                    title: "渲染精度",
+                    selection: $model.dpi,
+                    options: [
+                        (72.0, "72 DPI (标准 1x)"),
+                        (144.0, "144 DPI (高清 2x)"),
+                        (216.0, "216 DPI (超清 3x)"),
+                        (300.0, "300 DPI (印刷级)")
+                    ]
+                )
+
+                SettingsDivider()
+
                 SettingsRow("独立分页图片", subtitle: "将每页幻灯片导出为单独高清图片") {
                     Toggle("", isOn: $model.exportPages)
                         .labelsHidden()
@@ -387,10 +400,12 @@ struct ConvertExportFooterView: View {
         // 2. 长图 / 多卡片套图预估（由多张不同幻灯片及背景组合，信息熵高，实测长图 PNG 为 0.945 BPP，JPEG 为 0.30 BPP）
         if model.exportLong {
             let stitchedBpp = isJPEG ? 0.30 : 0.945
+            let dpiScale = max(1.0, model.dpi / 72.0)
             let custom = model.config.custom
             if let subs = custom?.subTemplates, !subs.isEmpty {
                 // 多画板套图（如电商主图、小红书卡片）
                 let baseOutWidth = model.config.templateOutputWidth ?? Double(subs.first?.width ?? custom?.width ?? 1000)
+                let w = (baseOutWidth * dpiScale).rounded()
                 var slideOffset = 0
                 for subTpl in subs {
                     guard slideOffset < model.images.count else { break }
@@ -398,8 +413,7 @@ struct ConvertExportFooterView: View {
                     guard count > 0 else { break }
                     slideOffset += count
 
-                    let w = baseOutWidth
-                    let h = ceil(Double(subTpl.height) * (baseOutWidth / Double(subTpl.width)))
+                    let h = ceil(Double(subTpl.height) * (baseOutWidth / Double(subTpl.width)) * dpiScale)
                     totalBytes += (w * h) * stitchedBpp
                 }
             } else {

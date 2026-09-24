@@ -271,6 +271,7 @@ struct StitchConfig {
     var backgroundColorHex: String? = nil
     var redBookTitle: String? = nil
     var redBookSubtitle: String? = nil
+    var dpi: Double = 72.0
 }
 
 enum ImageFormat: String, CaseIterable, Identifiable {

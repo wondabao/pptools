@@ -24,8 +24,9 @@ struct ZIPReader {
         process.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
         process.arguments = arguments
         let pipe = Pipe()
+        let errorPipe = Pipe()
         process.standardOutput = pipe
-        process.standardError = FileHandle.nullDevice
+        process.standardError = errorPipe
         try process.run()
         var output = Data()
         while let chunk = try pipe.fileHandleForReading.read(upToCount: 65536), !chunk.isEmpty {
@@ -37,8 +38,15 @@ struct ZIPReader {
                 throw ToolError("PPTX 资源超过安全读取上限。")
             }
         }
+        let errData = errorPipe.fileHandleForReading.readDataToEndOfFile()
         process.waitUntilExit()
-        guard process.terminationStatus == 0 else { throw ToolError("PPTX 解压失败，文件可能已损坏或加密。") }
+        guard process.terminationStatus == 0 else {
+            let errMsg = String(data: errData, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            if !errMsg.isEmpty {
+                throw ToolError("PPTX 读取失败：\(errMsg)")
+            }
+            throw ToolError("PPTX 解压失败，文件可能已损坏或加密。")
+        }
         return output
     }
 }

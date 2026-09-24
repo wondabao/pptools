@@ -610,6 +610,7 @@ struct SettingsColorPickerRow: View {
 /// System Settings Style Menu Picker Row (PopUp style menu button matching SettingsColorPickerRow)
 struct SettingsMenuPickerRow<T: Hashable>: View {
     let title: String
+    var subtitle: String? = nil
     @Binding var selection: T
     let options: [(id: T, label: String)]
 
@@ -620,12 +621,21 @@ struct SettingsMenuPickerRow<T: Hashable>: View {
     }
 
     var body: some View {
-        HStack {
-            Text(title)
-                .font(.system(size: 13))
-                .foregroundStyle(.primary)
+        HStack(alignment: subtitle != nil ? .center : .center) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: 13))
+                    .foregroundStyle(.primary)
 
-            Spacer()
+                if let subtitle = subtitle {
+                    Text(subtitle)
+                        .font(.system(size: 11))
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+
+            Spacer(minLength: 8)
 
             Menu {
                 ForEach(options, id: \.id) { opt in

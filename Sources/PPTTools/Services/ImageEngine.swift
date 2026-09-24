@@ -14,38 +14,82 @@ struct ImageEngine {
         return context
     }
 
-    static func renderPDF(_ url: URL, dpi: Double, progress: @escaping (Double) -> Void = { _ in }) throws -> [CGImage] {
-        guard let document = PDFDocument(url: url), !document.isLocked, document.pageCount > 0 else { throw ToolError("PDF 无法打开、已加密或没有页面。") }
+    static func renderPage(document: PDFDocument, index: Int, dpi: Double) throws -> CGImage {
+        guard let page = document.page(at: index), let pageRef = page.pageRef else { throw ToolError("无法读取第 \(index + 1) 页。") }
+        let bounds = page.bounds(for: .cropBox)
+        let rotated = abs(page.rotation % 180) == 90
+        let pageWidth = rotated ? bounds.height : bounds.width
+        let pageHeight = rotated ? bounds.width : bounds.height
+        let w = ceil(pageWidth * dpi / 72), h = ceil(pageHeight * dpi / 72)
+        guard w.isFinite, h.isFinite, w > 0, h > 0, w <= 16000, h <= 60000 else { throw ToolError("PDF 页面尺寸无效或过大。") }
+        let context = try context(width: Int(w), height: Int(h))
+        let rect = CGRect(x: 0, y: 0, width: w, height: h)
+        context.setFillColor(CGColor(gray: 1, alpha: 1)); context.fill(rect)
+        context.scaleBy(x: w / pageWidth, y: h / pageHeight)
+        context.concatenate(pageRef.getDrawingTransform(.cropBox, rect: CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight), rotate: 0, preserveAspectRatio: true))
+        context.drawPDFPage(pageRef)
+        guard let image = context.makeImage() else { throw ToolError("PDF 页面渲染失败。") }
+        return image
+    }
+
+    static func renderPDF(_ url: URL, dpi: Double, maxPages: Int? = nil, progress: @escaping (Double) -> Void = { _ in }) throws -> [CGImage] {
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            throw ToolError("未找到 PDF 文件：\(url.lastPathComponent)。")
+        }
+        guard let document = PDFDocument(url: url) else {
+            throw ToolError("无法打开 PDF 文件，可能是文件已损坏或无权访问。")
+        }
+        guard !document.isLocked else {
+            throw ToolError("PDF 文件已加密锁定，请先解密后重试。")
+        }
+        guard document.pageCount > 0 else {
+            throw ToolError("PDF 文件中未包含有效页面。")
+        }
         guard document.pageCount <= 500 else { throw ToolError("首版支持最多 500 页 PDF，请拆分后重试。") }
+        let targetCount = min(document.pageCount, maxPages ?? document.pageCount)
         var images: [CGImage] = []
         var totalPixels = 0.0
-        for index in 0..<document.pageCount {
+        for index in 0..<targetCount {
             try Task.checkCancellation()
             let image: CGImage = try autoreleasepool {
-                guard let page = document.page(at: index), let pageRef = page.pageRef else { throw ToolError("无法读取第 \(index + 1) 页。") }
-                let bounds = page.bounds(for: .cropBox)
-                let rotated = abs(page.rotation % 180) == 90
-                let pageWidth = rotated ? bounds.height : bounds.width
-                let pageHeight = rotated ? bounds.width : bounds.height
-                let w = ceil(pageWidth * dpi / 72), h = ceil(pageHeight * dpi / 72)
-                guard w.isFinite, h.isFinite, w > 0, h > 0, w <= 16000, h <= 60000 else { throw ToolError("PDF 页面尺寸无效或过大。") }
-                totalPixels += w * h
-                guard totalPixels <= 120_000_000 else { throw ToolError("分页图像总量超过内存预算，请降低 DPI 或拆分 PDF。") }
-                let context = try context(width: Int(w), height: Int(h))
-                let rect = CGRect(x: 0, y: 0, width: w, height: h)
-                context.setFillColor(CGColor(gray: 1, alpha: 1)); context.fill(rect)
-                // CGPDFPage's fitting transform does not reliably upscale smaller pages.
-                // Apply DPI explicitly, then fit crop/rotation in page-point space.
-                context.scaleBy(x: w / pageWidth, y: h / pageHeight)
-                context.concatenate(pageRef.getDrawingTransform(.cropBox, rect: CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight), rotate: 0, preserveAspectRatio: true))
-                context.drawPDFPage(pageRef)
-                guard let image = context.makeImage() else { throw ToolError("PDF 页面渲染失败。") }
-                return image
+                let img = try renderPage(document: document, index: index, dpi: dpi)
+                totalPixels += Double(img.width) * Double(img.height)
+                guard totalPixels <= 500_000_000 else { throw ToolError("长图合成图像总量超过内存预算（上限 5 亿像素），请降低 DPI 或减少长图页数。") }
+                return img
             }
             images.append(image)
-            progress(Double(index + 1) / Double(document.pageCount))
+            progress(Double(index + 1) / Double(targetCount))
         }
         return images
+    }
+
+    static func exportPages(from url: URL, to folder: URL, format: ImageFormat, dpi: Double, progress: @escaping (Double) -> Void = { _ in }) throws {
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            throw ToolError("未找到 PDF 文件：\(url.lastPathComponent)。")
+        }
+        guard let document = PDFDocument(url: url) else {
+            throw ToolError("无法打开 PDF 文件，可能是文件已损坏或无权访问。")
+        }
+        guard !document.isLocked else {
+            throw ToolError("PDF 文件已加密锁定，请先解密后重试。")
+        }
+        guard document.pageCount > 0 else {
+            throw ToolError("PDF 文件中未包含有效页面。")
+        }
+        guard document.pageCount <= 500 else { throw ToolError("首版支持最多 500 页 PDF，请拆分后重试。") }
+
+        let fm = FileManager.default
+        try fm.createDirectory(at: folder, withIntermediateDirectories: true)
+
+        for index in 0..<document.pageCount {
+            try Task.checkCancellation()
+            try autoreleasepool {
+                let image = try renderPage(document: document, index: index, dpi: dpi)
+                let pageName = String(format: "%03d.%@", index + 1, format.ext)
+                try write(image, to: folder.appendingPathComponent(pageName), format: format, dpi: dpi)
+            }
+            progress(Double(index + 1) / Double(document.pageCount))
+        }
     }
 
     static func layout(sizes: [CGSize], config: StitchConfig) throws -> (CGSize, [CGRect]) {
@@ -92,13 +136,23 @@ struct ImageEngine {
 
     // Preserve measured template geometry; snap scaled edges only at output time.
     static func outputSize(reference: CGSize, config: StitchConfig) throws -> CGSize {
-        let width = config.custom != nil ? (config.templateOutputWidth ?? reference.width) : reference.width
-        guard width.isFinite, width >= 1, width <= 16000, width.rounded() == width,
+        let baseWidth = config.custom != nil ? (config.templateOutputWidth ?? reference.width) : reference.width
+        guard baseWidth.isFinite, baseWidth >= 1, baseWidth <= 16000, baseWidth.rounded() == baseWidth,
               reference.width.isFinite, reference.width > 0,
               reference.height.isFinite, reference.height > 0 else {
             throw ToolError("输出宽度必须为 1–16000 之间的整数像素。")
         }
-        return CGSize(width: width, height: ceil(reference.height * width / reference.width))
+        let dpiScale = max(1.0, config.dpi / 72.0)
+        let width = (baseWidth * dpiScale).rounded()
+        guard width.isFinite, width >= 1, width <= 16000 else {
+            throw ToolError("输出宽度必须为 1–16000 之间的整数像素。")
+        }
+        let height = ceil(reference.height * width / reference.width)
+        guard height.isFinite, height >= 1, height <= 60000,
+              Double(width) * Double(height) <= pixelLimit else {
+            throw ToolError("高 DPI 长图总像素超出上限（8000万像素），请降低 DPI 或拆分长图。")
+        }
+        return CGSize(width: width, height: height)
     }
 
     static func pixelAlignedRects(_ rects: [CGRect], scale: Double) throws -> [CGRect] {
