@@ -102,23 +102,37 @@ struct MainView: View {
         }
         .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
             guard !model.busy, let provider = providers.first else { return false }
-            _ = provider.loadObject(ofClass: URL.self) { url, _ in
-                if let url {
-                    Task { @MainActor in
-                        withAnimation(AppleDesign.Animation.spring) {
-                            let ext = url.pathExtension.lowercased()
-                            if ext == "pptx" {
-                                selectedTab = .fontInspect
-                                model.tab = 0
-                                model.inspectPPTX(url)
-                            } else if ext == "pdf" {
-                                selectedTab = .convertExport
-                                model.tab = 1
-                                model.loadPDF(url)
-                            } else {
-                                model.error = "请拖入 .pptx 演示文稿或 .pdf 文件。"
-                            }
+            let handleURL: (URL) -> Void = { url in
+                Task { @MainActor in
+                    withAnimation(AppleDesign.Animation.spring) {
+                        let ext = url.pathExtension.lowercased()
+                        if ext == "pptx" {
+                            selectedTab = .fontInspect
+                            model.tab = 0
+                            model.inspectPPTX(url)
+                        } else if ext == "pdf" {
+                            selectedTab = .convertExport
+                            model.tab = 1
+                            model.loadPDF(url)
+                        } else {
+                            model.error = "请拖入 .pptx 演示文稿或 .pdf 文件。"
                         }
+                    }
+                }
+            }
+
+            if provider.canLoadObject(ofClass: URL.self) {
+                _ = provider.loadObject(ofClass: URL.self) { url, _ in
+                    if let url { handleURL(url) }
+                }
+            } else {
+                provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, _ in
+                    if let url = item as? URL {
+                        handleURL(url)
+                    } else if let data = item as? Data, let str = String(data: data, encoding: .utf8), let url = URL(string: str.trimmingCharacters(in: .whitespacesAndNewlines)) {
+                        handleURL(url)
+                    } else if let str = item as? String, let url = URL(string: str.trimmingCharacters(in: .whitespacesAndNewlines)) {
+                        handleURL(url)
                     }
                 }
             }

@@ -162,4 +162,57 @@ final class PPTToolsTests: XCTestCase {
         XCTAssertEqual(Int(round(g * 255)), 0xD9)
         XCTAssertEqual(Int(round(b * 255)), 0xD9)
     }
+
+    func testWatermarkFeatures() throws {
+        let red = try image(CGColor(red: 1, green: 0, blue: 0, alpha: 1), width: 300, height: 200)
+        var config = StitchConfig()
+        config.width = 300
+        config.padding = 0
+        config.spacing = 0
+        config.radius = 0
+        config.shadow = 0
+
+        // 1. Watermark disabled by default
+        XCTAssertFalse(config.watermarkEnabled)
+        XCTAssertEqual(config.watermarkText, "YYPIC.COM")
+        XCTAssertEqual(config.watermarkPosition, .tiled)
+
+        let plain = try ImageEngine.stitch([red], config: config)
+        XCTAssertEqual(plain.width, 300)
+
+        // 2. Tiled Watermark
+        var tiledConfig = config
+        tiledConfig.watermarkEnabled = true
+        tiledConfig.watermarkText = "YYPIC.COM"
+        tiledConfig.watermarkPosition = .tiled
+        let tiled = try ImageEngine.stitch([red], config: tiledConfig)
+        XCTAssertEqual(tiled.width, 300)
+
+        // Verify that watermark altered image pixels
+        var hasDifference = false
+        for y in stride(from: 10, to: 190, by: 10) {
+            for x in stride(from: 10, to: 290, by: 10) {
+                if pixel(plain, x: x, y: y) != pixel(tiled, x: x, y: y) {
+                    hasDifference = true
+                    break
+                }
+            }
+            if hasDifference { break }
+        }
+        XCTAssertTrue(hasDifference, "平铺水印应在画面中绘制文本")
+
+        // 3. BottomRight Watermark
+        var brConfig = config
+        brConfig.watermarkEnabled = true
+        brConfig.watermarkText = "YYPIC.COM"
+        brConfig.watermarkPosition = .bottomRight
+        let br = try ImageEngine.stitch([red], config: brConfig)
+        XCTAssertEqual(br.width, 300)
+
+        // 4. applyWatermark on single image
+        let watermarkedSingle = try ImageEngine.applyWatermark(to: red, config: tiledConfig)
+        XCTAssertEqual(watermarkedSingle.width, red.width)
+        XCTAssertEqual(watermarkedSingle.height, red.height)
+    }
 }
+

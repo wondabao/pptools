@@ -24,6 +24,8 @@ struct ConvertExportSidebarContent: View {
             Divider().opacity(0.4)
             detailSection
             Divider().opacity(0.4)
+            watermarkSection
+            Divider().opacity(0.4)
             outputSection
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -285,6 +287,59 @@ struct ConvertExportSidebarContent: View {
         }
     }
 
+    // MARK: - Watermark Section
+
+    private var watermarkSection: some View {
+        SettingsGroup("水印设置") {
+            VStack(spacing: 0) {
+                SettingsRow("添加水印", subtitle: "在导出与预览图片上添加文本水印") {
+                    Toggle("", isOn: Binding(
+                        get: { model.config.watermarkEnabled },
+                        set: {
+                            model.config.watermarkEnabled = $0
+                            model.updatePreview()
+                        }
+                    ))
+                    .labelsHidden()
+                    .toggleStyle(.switch)
+                    .controlSize(.small)
+                }
+
+                if model.config.watermarkEnabled {
+                    SettingsDivider()
+                    SettingsRow("水印文字") {
+                        TextField("YYPIC.COM", text: Binding(
+                            get: { model.config.watermarkText },
+                            set: {
+                                model.config.watermarkText = $0
+                                model.updatePreview()
+                            }
+                        ))
+                        .textFieldStyle(.roundedBorder)
+                        .controlSize(.small)
+                        .frame(maxWidth: 160)
+                    }
+
+                    SettingsDivider()
+                    SettingsRow("水印位置") {
+                        Picker("水印位置", selection: Binding(
+                            get: { model.config.watermarkPosition },
+                            set: {
+                                model.config.watermarkPosition = $0
+                                model.updatePreview()
+                            }
+                        )) {
+                            ForEach(WatermarkPosition.allCases) { Text($0.rawValue).tag($0) }
+                        }
+                        .labelsHidden()
+                        .pickerStyle(.menu)
+                        .controlSize(.small)
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - 6. Output Options (导出设置 with Switch Toggles)
 
     private var outputSection: some View {
@@ -504,6 +559,9 @@ struct ConvertExportPreviewView: View {
             .onChange(of: model.config.templateOutputWidth) { model.updatePreview() }
             .onChange(of: model.config.keepFullTemplateHeight) { model.updatePreview() }
             .onChange(of: model.config.backgroundColorHex) { model.updatePreview() }
+            .onChange(of: model.config.watermarkEnabled) { model.updatePreview() }
+            .onChange(of: model.config.watermarkText) { model.updatePreview() }
+            .onChange(of: model.config.watermarkPosition) { model.updatePreview() }
     }
 
     @ViewBuilder

@@ -63,7 +63,7 @@ struct ImageEngine {
         return images
     }
 
-    static func exportPages(from url: URL, to folder: URL, format: ImageFormat, dpi: Double, progress: @escaping (Double) -> Void = { _ in }) throws {
+    static func exportPages(from url: URL, to folder: URL, format: ImageFormat, dpi: Double, config: StitchConfig? = nil, progress: @escaping (Double) -> Void = { _ in }) throws {
         guard FileManager.default.fileExists(atPath: url.path) else {
             throw ToolError("未找到 PDF 文件：\(url.lastPathComponent)。")
         }
@@ -84,7 +84,10 @@ struct ImageEngine {
         for index in 0..<document.pageCount {
             try Task.checkCancellation()
             try autoreleasepool {
-                let image = try renderPage(document: document, index: index, dpi: dpi)
+                var image = try renderPage(document: document, index: index, dpi: dpi)
+                if let config = config, config.watermarkEnabled {
+                    image = try applyWatermark(to: image, config: config)
+                }
                 let pageName = String(format: "%03d.%@", index + 1, format.ext)
                 try write(image, to: folder.appendingPathComponent(pageName), format: format, dpi: dpi)
             }
@@ -361,6 +364,7 @@ struct ImageEngine {
             }
         }
         drawRedBookHeader(in: context, output: output, geometryScale: geometryScale, config: config)
+        drawWatermark(in: context, output: output, geometryScale: geometryScale, config: config)
         guard let result = context.makeImage() else { throw ToolError("长图合成失败。") }
         return result
     }
@@ -435,6 +439,109 @@ struct ImageEngine {
             context.textPosition = CGPoint(x: baselineX, y: baselineY)
             CTLineDraw(line, context)
             context.restoreGState()
+        }
+    }
+
+    static func applyWatermark(to image: CGImage, config: StitchConfig) throws -> CGImage {
+        guard config.watermarkEnabled else { return image }
+        let w = image.width
+        let h = image.height
+        let context = try context(width: w, height: h)
+        context.draw(image, in: CGRect(x: 0, y: 0, width: w, height: h))
+        let geometryScale = Double(w) / 1000.0
+        drawWatermark(in: context, output: CGSize(width: w, height: h), geometryScale: geometryScale, config: config)
+        guard let result = context.makeImage() else { return image }
+        return result
+    }
+
+    static func drawWatermark(in context: CGContext, output: CGSize, geometryScale: Double, config: StitchConfig) {
+        guard config.watermarkEnabled else { return }
+        let rawText = config.watermarkText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let text = rawText.isEmpty ? "YYPIC.COM" : rawText
+        let geoScale = max(0.5, geometryScale)
+
+        context.saveGState()
+        defer { context.restoreGState() }
+
+        context.clip(to: CGRect(origin: .zero, size: output))
+
+        switch config.watermarkPosition {
+        case .tiled:
+            let angle = -25.0 * .pi / 180.0
+            let fontSize = max(22.0, 32.0 * geoScale)
+            let font = NSFont.systemFont(ofSize: fontSize, weight: .medium)
+            let color = NSColor(white: 0.5, alpha: 0.10)
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: font,
+                .foregroundColor: color
+            ]
+            let line = CTLineCreateWithAttributedString(NSAttributedString(string: text, attributes: attrs))
+            let textWidth = CTLineGetTypographicBounds(line, nil, nil, nil)
+            guard textWidth > 0 else { return }
+
+            context.rotate(by: angle)
+
+            let cosA = cos(angle)
+            let sinA = sin(angle)
+            let corners = [
+                (0.0, 0.0),
+                (output.width * cosA, -output.width * sinA),
+                (output.height * sinA, output.height * cosA),
+                (output.width * cosA + output.height * sinA, -output.width * sinA + output.height * cosA)
+            ]
+            let minX = corners.map(\.0).min() ?? 0
+            let maxX = corners.map(\.0).max() ?? output.width
+            let minY = corners.map(\.1).min() ?? 0
+            let maxY = corners.map(\.1).max() ?? output.height
+
+            let stepX = max(textWidth + 240.0 * geoScale, 420.0 * geoScale)
+            let stepY = max(fontSize * 6.5, 280.0 * geoScale)
+
+            var y = minY
+            var rowIndex = 0
+            while y <= maxY + stepY {
+                let xOffset = (rowIndex % 2 == 1) ? stepX / 2.0 : 0.0
+                var x = minX + xOffset
+                while x <= maxX + stepX {
+                    context.textPosition = CGPoint(x: x, y: y)
+                    CTLineDraw(line, context)
+                    x += stepX
+                }
+                y += stepY
+                rowIndex += 1
+            }
+
+        case .bottomRight:
+            let fontSize = max(16.0, 22.0 * geoScale)
+            let font = NSFont.systemFont(ofSize: fontSize, weight: .medium)
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: font,
+                .foregroundColor: NSColor(white: 1.0, alpha: 0.85)
+            ]
+            let line = CTLineCreateWithAttributedString(NSAttributedString(string: text, attributes: attrs))
+            let textWidth = CTLineGetTypographicBounds(line, nil, nil, nil)
+            guard textWidth > 0 else { return }
+
+            let hPad = 14.0 * geoScale
+            let vPad = 7.0 * geoScale
+            let badgeWidth = textWidth + hPad * 2
+            let badgeHeight = fontSize + vPad * 2
+            let margin = 20.0 * geoScale
+
+            let badgeRect = CGRect(
+                x: output.width - margin - badgeWidth,
+                y: margin,
+                width: badgeWidth,
+                height: badgeHeight
+            )
+
+            context.setFillColor(CGColor(gray: 0, alpha: 0.28))
+            let pillPath = CGPath(roundedRect: badgeRect, cornerWidth: badgeHeight / 2.0, cornerHeight: badgeHeight / 2.0, transform: nil)
+            context.addPath(pillPath)
+            context.fillPath()
+
+            context.textPosition = CGPoint(x: badgeRect.minX + hPad, y: badgeRect.minY + vPad + (fontSize * 0.12))
+            CTLineDraw(line, context)
         }
     }
 

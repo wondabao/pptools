@@ -13,7 +13,20 @@ elif [ -f "logo.svg" ]; then
     swift scripts/make-icon.swift logo.svg Sources/PPTTools/Resources/AppIcon.icns
 fi
 
-swift build -c release --disable-sandbox
+if [ -z "${SDKROOT:-}" ]; then
+    if [ -d "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk" ]; then
+        export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk"
+    elif [ -d "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk" ]; then
+        export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+    fi
+fi
+
+if ! swift build -c release --disable-sandbox 2>/dev/null; then
+    echo "SwiftPM build not available or failed, compiling with swiftc directly..."
+    mkdir -p .build/release
+    swiftc -O -parse-as-library Sources/PPTTools/*.swift Sources/PPTTools/*/*.swift -o .build/release/PPTTools
+fi
+
 app="$PWD/build/有用工具.app"
 mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources"
 cp .build/release/PPTTools "$app/Contents/MacOS/PPTTools"
@@ -51,8 +64,8 @@ cat > "$app/Contents/Info.plist" <<'PLIST'
 <key>CFBundleIconFile</key><string>AppIcon</string>
 <key>CFBundleIconName</key><string>AppIcon</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>1.3.0</string>
-<key>CFBundleVersion</key><string>1.3.0</string>
+<key>CFBundleShortVersionString</key><string>1.4.0</string>
+<key>CFBundleVersion</key><string>1.4.0</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>NSHighResolutionCapable</key><true/>
 <key>CFBundleDocumentTypes</key><array><dict>

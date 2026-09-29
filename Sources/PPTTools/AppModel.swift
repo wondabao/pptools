@@ -45,22 +45,28 @@ final class AppModel: ObservableObject {
     }
 
     func choosePPTX() {
+        NSApp.activate(ignoringOtherApps: true)
         let panel = NSOpenPanel()
         panel.title = "导入演示文稿"
         panel.prompt = "导入"
         panel.message = "请选择用于字体检测的 PPTX 演示文稿。"
         panel.allowedContentTypes = [UTType(filenameExtension: "pptx") ?? .data]
         panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = false
+        panel.canChooseFiles = true
         if panel.runModal() == .OK, let url = panel.url { inspectPPTX(url) }
     }
 
     func choosePDF() {
+        NSApp.activate(ignoringOtherApps: true)
         let panel = NSOpenPanel()
         panel.title = "导入 PDF"
         panel.prompt = "导入"
         panel.message = "请选择用于图片生成的 PDF 文件。"
         panel.allowedContentTypes = [.pdf]
         panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = false
+        panel.canChooseFiles = true
         if panel.runModal() == .OK, let url = panel.url { loadPDF(url) }
     }
 
@@ -321,7 +327,7 @@ final class AppModel: ObservableObject {
                         if pages {
                             let folderName = baseName.isEmpty ? "分页图片" : "\(baseName)-分页图片"
                             let pageFolder = staging.appendingPathComponent(folderName)
-                            try ImageEngine.exportPages(from: pdf, to: pageFolder, format: format, dpi: dpi) { value in
+                            try ImageEngine.exportPages(from: pdf, to: pageFolder, format: format, dpi: dpi, config: config) { value in
                                 Task { @MainActor [weak self] in
                                     let factor = long ? 0.45 : 0.90
                                     self?.progress = value * factor

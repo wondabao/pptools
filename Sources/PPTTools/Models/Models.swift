@@ -256,6 +256,12 @@ enum LayoutStyle: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
+enum WatermarkPosition: String, CaseIterable, Identifiable, Codable {
+    case tiled = "全图平铺"
+    case bottomRight = "右下角"
+    var id: String { rawValue }
+}
+
 struct StitchConfig {
     var style: LayoutStyle = .cards
     var width: Double = 1080
@@ -272,6 +278,9 @@ struct StitchConfig {
     var redBookTitle: String? = nil
     var redBookSubtitle: String? = nil
     var dpi: Double = 72.0
+    var watermarkEnabled: Bool = false
+    var watermarkText: String = "YYPIC.COM"
+    var watermarkPosition: WatermarkPosition = .tiled
 }
 
 enum ImageFormat: String, CaseIterable, Identifiable {
